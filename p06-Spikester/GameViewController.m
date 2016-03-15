@@ -18,11 +18,12 @@ UICollisionBehavior* _collision; //setting boundaries of falling
 NSTimer *BirdMovement;
 CGRect screenRect;
 CGFloat screenWidth;
+UILabel *lbl1;
 CGFloat screenHeight;
-int flg = 0;
+int flg = 0,scr_counter = 0;
 int BearFlight;
 @implementation GameViewController
-@synthesize bear;
+@synthesize bear,score;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -44,6 +45,15 @@ int BearFlight;
     //setting bear image
     [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
     
+    
+    //score
+    self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
+    self.score.alpha = 0.5;
+    self.score.layer.cornerRadius = 50;
+    self.score.backgroundColor = [UIColor blueColor];
+    
+    
+    
     //creating circle
     CAShapeLayer *circleLayer = [CAShapeLayer layer];
     [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
@@ -54,15 +64,18 @@ int BearFlight;
     [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
     
     
-    //creating outer circle
-    CAShapeLayer *circleLayer1 = [CAShapeLayer layer];
-    [circleLayer1 setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 60, screenHeight/2 - 60, 120, 120)] CGPath]];
+   
     
-    [[self.view layer] addSublayer:circleLayer1];
     
-    [circleLayer1 setStrokeColor:[[UIColor redColor] CGColor]];
-    [circleLayer1 setFillColor:[[UIColor clearColor] CGColor]];
-    
+    //setting score
+    lbl1 = [[UILabel alloc] init];
+    [lbl1 setFrame:CGRectMake(screenWidth/2 - 40,screenHeight/2 - 40,80,80)];
+    lbl1.backgroundColor=[UIColor clearColor];
+    lbl1.textColor=[UIColor blackColor];
+    lbl1.userInteractionEnabled=YES;
+    lbl1.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:lbl1];
+    lbl1.text= @"0";
     
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
@@ -94,20 +107,30 @@ int BearFlight;
         //  bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
         flg = 1;
         NSLog(@"coords: %f",bear.center.x);
+        scr_counter++;
+        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
     }
     if ((bear.center.x + 50) >= screenWidth)
     {
         flg = 0;
         // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
+        scr_counter++;
+        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
     }
     
     if(flg == 1)
     {
+        
         bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
+        
+        
     }
     else
     {
         bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
+       
     }
     BearFlight = BearFlight - 5;
     
