@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface GameViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIImageView *bear;
 
 @end
