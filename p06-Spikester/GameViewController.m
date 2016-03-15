@@ -36,8 +36,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 	
-   // downspikes = [[NSMutableArray alloc] initWithCapacity:8];
+    upspikes = [NSMutableArray array];
     downspikes = [NSMutableArray array];
+    leftspikes = [NSMutableArray array];
+    rightspikes = [NSMutableArray array];
     
 	[self generatingSpikes];
     //getting screen sizes
