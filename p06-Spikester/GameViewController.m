@@ -101,7 +101,7 @@ int BearFlight;
     
     //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
     
-    if ((bear.center.x - 50) < 10) {
+    if ((bear.center.x - 40) < 10) {
         //  bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
         flg = 1;
         NSLog(@"coords: %f",bear.center.x);
@@ -109,7 +109,7 @@ int BearFlight;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
     }
-    if ((bear.center.x + 50) >= screenWidth)
+    if ((bear.center.x + 40) >= screenWidth)
     {
         flg = 0;
         // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
