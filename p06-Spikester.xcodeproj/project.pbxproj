@@ -10,12 +10,13 @@
 		18A1BB621C9691CC0001AFD5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB611C9691CC0001AFD5 /* main.m */; };
 		18A1BB651C9691CC0001AFD5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB641C9691CC0001AFD5 /* AppDelegate.m */; };
 		18A1BB681C9691CC0001AFD5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB671C9691CC0001AFD5 /* ViewController.m */; };
-		18A1BB6B1C9691CC0001AFD5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB691C9691CC0001AFD5 /* Main.storyboard */; };
 		18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB6C1C9691CC0001AFD5 /* Assets.xcassets */; };
 		18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */; };
 		18A1BB7B1C9691CC0001AFD5 /* p06_SpikesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB7A1C9691CC0001AFD5 /* p06_SpikesterTests.m */; };
 		18A1BB861C9691CC0001AFD5 /* p06_SpikesterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */; };
 		81FB6FB11C97D34200212C2E /* bearcat.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB01C97D34100212C2E /* bearcat.png */; };
+		81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB21C97E4CA00212C2E /* Main.storyboard */; };
+		81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB51C97E80000212C2E /* bearcat1.png */; };
 		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
@@ -43,7 +44,6 @@
 		18A1BB641C9691CC0001AFD5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		18A1BB661C9691CC0001AFD5 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		18A1BB671C9691CC0001AFD5 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		18A1BB6A1C9691CC0001AFD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		18A1BB6C1C9691CC0001AFD5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		18A1BB6F1C9691CC0001AFD5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		18A1BB711C9691CC0001AFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -54,6 +54,8 @@
 		18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = p06_SpikesterUITests.m; sourceTree = "<group>"; };
 		18A1BB871C9691CC0001AFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FB6FB01C97D34100212C2E /* bearcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat.png; sourceTree = "<group>"; };
+		81FB6FB31C97E4CA00212C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "p06-Spikester/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
+		81FB6FB51C97E80000212C2E /* bearcat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat1.png; sourceTree = "<group>"; };
 		DC4342861C97CCDA00EE08B7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		DC4342871C97CCDA00EE08B7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 		18A1BB541C9691CC0001AFD5 = {
 			isa = PBXGroup;
 			children = (
+				81FB6FB51C97E80000212C2E /* bearcat1.png */,
 				81FB6FB01C97D34100212C2E /* bearcat.png */,
 				18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */,
 				18A1BB791C9691CC0001AFD5 /* p06-SpikesterTests */,
@@ -111,7 +114,7 @@
 				18A1BB641C9691CC0001AFD5 /* AppDelegate.m */,
 				18A1BB661C9691CC0001AFD5 /* ViewController.h */,
 				18A1BB671C9691CC0001AFD5 /* ViewController.m */,
-				18A1BB691C9691CC0001AFD5 /* Main.storyboard */,
+				81FB6FB21C97E4CA00212C2E /* Main.storyboard */,
 				18A1BB6C1C9691CC0001AFD5 /* Assets.xcassets */,
 				18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */,
 				18A1BB711C9691CC0001AFD5 /* Info.plist */,
@@ -254,10 +257,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */,
 				81FB6FB11C97D34200212C2E /* bearcat.png in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,
-				18A1BB6B1C9691CC0001AFD5 /* Main.storyboard in Resources */,
+				81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -321,20 +325,21 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		18A1BB691C9691CC0001AFD5 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				18A1BB6A1C9691CC0001AFD5 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				18A1BB6F1C9691CC0001AFD5 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		81FB6FB21C97E4CA00212C2E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				81FB6FB31C97E4CA00212C2E /* Base */,
+			);
+			name = Main.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
