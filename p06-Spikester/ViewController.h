@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController
-
-
+@property (nonatomic, strong) UIView *sound;
+@property (nonatomic, strong) UIView *credit;
+@property (nonatomic, strong) UIView *shop;
 @end
 
