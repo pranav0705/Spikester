@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10080"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -17,21 +18,34 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxK-iw-Mrz">
-                                <rect key="frame" x="20" y="357" width="238" height="58"/>
-                                <state key="normal" title="Button"/>
-                                <connections>
-                                    <segue destination="GEF-1K-xUE" kind="presentation" id="7cW-d5-Uyz"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SPIKESTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDc-Yn-2EP">
-                                <rect key="frame" x="20" y="139" width="307" height="127"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPIKESTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDc-Yn-2EP">
+                                <rect key="frame" x="20" y="28" width="560" height="74"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="62"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxK-iw-Mrz">
+                                <rect key="frame" x="161" y="330" width="278" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="100" id="A3N-O3-mBm"/>
+                                    <constraint firstAttribute="width" constant="278" id="UD4-cz-FDX"/>
+                                </constraints>
+                                <state key="normal" image="PlayButton.png"/>
+                                <connections>
+                                    <segue destination="GEF-1K-xUE" kind="presentation" id="7cW-d5-Uyz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="1iG-Un-ET4"/>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="centerX" secondItem="wDc-Yn-2EP" secondAttribute="centerX" id="6lo-zB-7Vn"/>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-235" id="G58-U7-up1"/>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailingMargin" id="L5r-6N-1dV"/>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="xbZ-KH-NPx"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="sxK-iw-Mrz" secondAttribute="bottom" constant="170" id="yB6-AK-UZG"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -65,4 +79,7 @@
             <point key="canvasLocation" x="993" y="317"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PlayButton.png" width="224" height="100"/>
+    </resources>
 </document>
