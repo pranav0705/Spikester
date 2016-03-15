@@ -68,7 +68,7 @@ int BearFlight;
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -242,6 +242,6 @@ int BearFlight;
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    BearFlight = 30;
+    BearFlight = 20;
 }
 @end
