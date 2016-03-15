@@ -66,9 +66,7 @@ int BearFlight;
     
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
-    
-    
-    
+	
     /*  //animation for falling
      _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
      _gravity = [[UIGravityBehavior alloc] initWithItems:@[bear]];
@@ -110,21 +108,12 @@ int BearFlight;
         bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
     }
     BearFlight = BearFlight - 5;
-    
-    /*  if (BearFlight < -15) {
-     BearFlight = -15;
-     } */
-    
-    
-    
-    
-    
+	
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
     BearFlight = 30;
-    
 }
 
 @end
