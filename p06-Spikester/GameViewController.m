@@ -23,13 +23,24 @@ UILabel *lbl1;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
+
+int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
+
+
 @implementation GameViewController
 @synthesize bear,score;
+@synthesize upspikes, downspikes, leftspikes, rightspikes;
+@synthesize timer;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 	
+    upspikes = [NSMutableArray array];
+    downspikes = [NSMutableArray array];
+    leftspikes = [NSMutableArray array];
+    rightspikes = [NSMutableArray array];
+    
 	[self generatingSpikes];
     //getting screen sizes
     screenRect = [[UIScreen mainScreen] bounds];
@@ -38,23 +49,16 @@ int BearFlight;
     
     //setting the image
     //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
-    
-//    CGPoint centerImageView = bear.center;
-//    centerImageView.x = self.view.center.x;
-//    bear.center = centerImageView;
-    
+	
     //setting bear image
     [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
-    
-    
+	
     //score
     self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
     self.score.alpha = 0.5;
     self.score.layer.cornerRadius = 50;
     self.score.backgroundColor = [UIColor blueColor];
-    
-    
-    
+	
     //creating circle
     CAShapeLayer *circleLayer = [CAShapeLayer layer];
     [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
@@ -63,11 +67,7 @@ int BearFlight;
     
     [circleLayer setStrokeColor:[[UIColor redColor] CGColor]];
     [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-    
-    
-   
-    
-    
+	
     //setting score
     lbl1 = [[UILabel alloc] init];
     [lbl1 setFrame:CGRectMake(screenWidth/2 - 40,screenHeight/2 - 40,80,80)];
@@ -79,18 +79,7 @@ int BearFlight;
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
-	
-    /*  //animation for falling
-     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-     _gravity = [[UIGravityBehavior alloc] initWithItems:@[bear]];
-     [_animator addBehavior:_gravity];
-     
-     //setting boundaries
-     _collision = [[UICollisionBehavior alloc]
-     initWithItems:@[bear]];
-     _collision.translatesReferenceBoundsIntoBoundary = YES;
-     [_animator addBehavior:_collision];  */
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,8 +112,6 @@ int BearFlight;
     {
         
         bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
-        
-        
     }
     else
     {
@@ -162,8 +149,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [downspikes addObject:spikeView];
 		
 		x += widthspikes + 2;
 	}
@@ -190,8 +179,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+         //add spikes to array
+        [upspikes addObject:spikeView];
 		
 		x += widthspikes + 2;
 	}
@@ -216,15 +207,19 @@ int BearFlight;
 		
 		imageView.transform = CGAffineTransformMakeRotation(3.14/2);
 		
-		//specify the frame of the imageView in the superview , here it will fill the superview
-		imageView.frame = spikeView.bounds;
-		
-		// add the imageview to the superview
-		[spikeView addSubview:imageView];
-		
-		//add the view to the main view
-		
-		[self.view addSubview:spikeView];
+        //specify the frame of the imageView in the superview , here it will fill the superview
+        imageView.frame = spikeView.bounds;
+        
+        // add the imageview to the superview
+        [spikeView addSubview:imageView];
+        
+        //add the view to the main view
+        [self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [leftspikes addObject:spikeView];
+        
+        //[imageView release];
 		
 		y += widthspikes + 3;
 	}
@@ -255,18 +250,120 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [rightspikes addObject:spikeView];
 		
 		y += widthspikes + 3;
 	}
-	
+    
+    timer = [NSTimer scheduledTimerWithTimeInterval:2	target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
+    
+    //HIDE LEFT AND RIGHT SPIKES
+    for(int k=0; k<11; k++)
+    {
+            UILabel *x =[rightspikes objectAtIndex:k];
+            
+            x.hidden = YES;
+        
+            x =[leftspikes objectAtIndex:k];
+        
+            x.hidden = YES;
+    }
+    
+}
+
+-(void)timerEvent:(id)sender
+{
+    int max=11,min=0;
+    
+    if(checkSide == 0)
+    {
+        //show right side spikes
+        for (int i=0;i< 3; i++)
+        {
+            int randNum = rand() % (max - min) + min; //create the random number.
+            for(int k=0; k<11; k++)
+            {
+                if(randNum == k)
+                {
+                    UIImageView *x =[rightspikes objectAtIndex:k];
+                    //x.hidden = NO;
+                    [self showSpikesAnimate:x];
+                }
+            }
+        }
+        
+        //HIDE LEFT SPIKES
+        for(int k=0; k<11; k++)
+        {
+            UIImageView *x =[leftspikes objectAtIndex:k];
+            
+            //x.hidden = YES;
+            [self hideSpikesAnimate:x];
+        }
+        checkSide = 1;
+        
+    }else{
+        //show left side spikes
+        for (int i=0;i< 3; i++)
+        {
+            int randNum = rand() % (max - min) + min; //create the random number.
+            for(int k=0; k<11; k++)
+            {
+                if(randNum == k)
+                {
+                    UIImageView *x =[leftspikes objectAtIndex:k];
+                    //x.hidden = NO;
+                    [self showSpikesAnimate:x];
+                }
+            }
+        }
+        
+        //HIDE RIGHT SPIKES
+        for(int k=0; k<11; k++)
+        {
+            UIImageView *x =[rightspikes objectAtIndex:k];
+            
+            //x.hidden = YES;
+            [self hideSpikesAnimate:x];
+        }
+        checkSide = 0;
+        
+    }
+
+}
+
+- (void)hideSpikesAnimate:(UIImageView *)imageView
+{
+    imageView.alpha = 1.0f;
+    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
+        // Animate the alpha value of your imageView from 1.0 to 0.0 here
+        imageView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        imageView.hidden = YES;
+    }];
+}
+
+- (void)showSpikesAnimate:(UIImageView *)imageView
+{
+    imageView.alpha = 1.0f;
+    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
+    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
+        // Animate the alpha value of your imageView from 1.0 to 0.0 here
+        imageView.alpha = 0.0f;
+    } completion:^(BOOL finished) {
+        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
+        imageView.hidden = NO;
+    }];
 }
 
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     
-    BearFlight = 30;
+    BearFlight = 20;
 }
-
 @end
