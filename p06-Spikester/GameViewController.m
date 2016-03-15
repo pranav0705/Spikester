@@ -38,23 +38,16 @@ int BearFlight;
     
     //setting the image
     //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
-    
-//    CGPoint centerImageView = bear.center;
-//    centerImageView.x = self.view.center.x;
-//    bear.center = centerImageView;
-    
+	
     //setting bear image
     [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
-    
-    
+	
     //score
     self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
     self.score.alpha = 0.5;
     self.score.layer.cornerRadius = 50;
     self.score.backgroundColor = [UIColor blueColor];
-    
-    
-    
+	
     //creating circle
     CAShapeLayer *circleLayer = [CAShapeLayer layer];
     [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
@@ -63,11 +56,7 @@ int BearFlight;
     
     [circleLayer setStrokeColor:[[UIColor redColor] CGColor]];
     [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-    
-    
-   
-    
-    
+	
     //setting score
     lbl1 = [[UILabel alloc] init];
     [lbl1 setFrame:CGRectMake(screenWidth/2 - 40,screenHeight/2 - 40,80,80)];
@@ -80,17 +69,6 @@ int BearFlight;
     
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
-	
-    /*  //animation for falling
-     _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self.view];
-     _gravity = [[UIGravityBehavior alloc] initWithItems:@[bear]];
-     [_animator addBehavior:_gravity];
-     
-     //setting boundaries
-     _collision = [[UICollisionBehavior alloc]
-     initWithItems:@[bear]];
-     _collision.translatesReferenceBoundsIntoBoundary = YES;
-     [_animator addBehavior:_collision];  */
 }
 
 - (void)didReceiveMemoryWarning {
@@ -123,8 +101,6 @@ int BearFlight;
     {
         
         bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
-        
-        
     }
     else
     {
@@ -268,5 +244,4 @@ int BearFlight;
     
     BearFlight = 30;
 }
-
 @end
