@@ -15,6 +15,8 @@
 		18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */; };
 		18A1BB7B1C9691CC0001AFD5 /* p06_SpikesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB7A1C9691CC0001AFD5 /* p06_SpikesterTests.m */; };
 		18A1BB861C9691CC0001AFD5 /* p06_SpikesterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */; };
+		81FB6FB11C97D34200212C2E /* bearcat.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB01C97D34100212C2E /* bearcat.png */; };
+		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +53,9 @@
 		18A1BB811C9691CC0001AFD5 /* p06-SpikesterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "p06-SpikesterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = p06_SpikesterUITests.m; sourceTree = "<group>"; };
 		18A1BB871C9691CC0001AFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81FB6FB01C97D34100212C2E /* bearcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat.png; sourceTree = "<group>"; };
+		DC4342861C97CCDA00EE08B7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
+		DC4342871C97CCDA00EE08B7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +86,7 @@
 		18A1BB541C9691CC0001AFD5 = {
 			isa = PBXGroup;
 			children = (
+				81FB6FB01C97D34100212C2E /* bearcat.png */,
 				18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */,
 				18A1BB791C9691CC0001AFD5 /* p06-SpikesterTests */,
 				18A1BB841C9691CC0001AFD5 /* p06-SpikesterUITests */,
@@ -110,6 +116,8 @@
 				18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */,
 				18A1BB711C9691CC0001AFD5 /* Info.plist */,
 				18A1BB601C9691CC0001AFD5 /* Supporting Files */,
+				DC4342861C97CCDA00EE08B7 /* GameViewController.h */,
+				DC4342871C97CCDA00EE08B7 /* GameViewController.m */,
 			);
 			path = "p06-Spikester";
 			sourceTree = "<group>";
@@ -246,6 +254,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FB6FB11C97D34200212C2E /* bearcat.png in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,
 				18A1BB6B1C9691CC0001AFD5 /* Main.storyboard in Resources */,
@@ -273,6 +282,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */,
 				18A1BB681C9691CC0001AFD5 /* ViewController.m in Sources */,
 				18A1BB651C9691CC0001AFD5 /* AppDelegate.m in Sources */,
 				18A1BB621C9691CC0001AFD5 /* main.m in Sources */,
@@ -417,6 +427,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "p06-Spikester/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-Spikester";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -428,6 +439,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = "p06-Spikester/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-Spikester";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -439,6 +451,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "p06-SpikesterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-SpikesterTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -451,6 +464,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				INFOPLIST_FILE = "p06-SpikesterTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-SpikesterTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -462,6 +476,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "p06-SpikesterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-SpikesterUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -473,6 +488,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = "p06-SpikesterUITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "tkale1.p06-SpikesterUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -499,6 +515,7 @@
 				18A1BB8C1C9691CC0001AFD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18A1BB8D1C9691CC0001AFD5 /* Build configuration list for PBXNativeTarget "p06-SpikesterTests" */ = {
 			isa = XCConfigurationList;
@@ -507,6 +524,7 @@
 				18A1BB8F1C9691CC0001AFD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		18A1BB901C9691CC0001AFD5 /* Build configuration list for PBXNativeTarget "p06-SpikesterUITests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +533,7 @@
 				18A1BB921C9691CC0001AFD5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
