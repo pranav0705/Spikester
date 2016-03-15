@@ -7,8 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Spikes.h"
+
 
 @interface GameViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *bear;
 @property (strong, nonatomic) IBOutlet UIView *score;
 @end
+
+

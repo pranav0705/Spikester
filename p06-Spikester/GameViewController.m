@@ -7,6 +7,7 @@
 //
 
 #import "GameViewController.h"
+#import "Spikes.h"
 
 @interface GameViewController ()
 

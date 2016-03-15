@@ -18,6 +18,8 @@
 		81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB21C97E4CA00212C2E /* Main.storyboard */; };
 		81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB51C97E80000212C2E /* bearcat1.png */; };
 		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
+		DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC43428A1C97D1A500EE08B7 /* Spikes.m */; };
+		DC43428D1C97D51E00EE08B7 /* spike.png in Resources */ = {isa = PBXBuildFile; fileRef = DC43428C1C97D51E00EE08B7 /* spike.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,9 @@
 		81FB6FB51C97E80000212C2E /* bearcat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat1.png; sourceTree = "<group>"; };
 		DC4342861C97CCDA00EE08B7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		DC4342871C97CCDA00EE08B7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
+		DC4342891C97D1A500EE08B7 /* Spikes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
+		DC43428A1C97D1A500EE08B7 /* Spikes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spikes.m; sourceTree = "<group>"; };
+		DC43428C1C97D51E00EE08B7 /* spike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spike.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +115,7 @@
 		18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */ = {
 			isa = PBXGroup;
 			children = (
+				DC43428C1C97D51E00EE08B7 /* spike.png */,
 				18A1BB631C9691CC0001AFD5 /* AppDelegate.h */,
 				18A1BB641C9691CC0001AFD5 /* AppDelegate.m */,
 				18A1BB661C9691CC0001AFD5 /* ViewController.h */,
@@ -121,6 +127,8 @@
 				18A1BB601C9691CC0001AFD5 /* Supporting Files */,
 				DC4342861C97CCDA00EE08B7 /* GameViewController.h */,
 				DC4342871C97CCDA00EE08B7 /* GameViewController.m */,
+				DC4342891C97D1A500EE08B7 /* Spikes.h */,
+				DC43428A1C97D1A500EE08B7 /* Spikes.m */,
 			);
 			path = "p06-Spikester";
 			sourceTree = "<group>";
@@ -288,6 +296,7 @@
 			files = (
 				DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */,
 				18A1BB681C9691CC0001AFD5 /* ViewController.m in Sources */,
+				DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */,
 				18A1BB651C9691CC0001AFD5 /* AppDelegate.m in Sources */,
 				18A1BB621C9691CC0001AFD5 /* main.m in Sources */,
 			);
