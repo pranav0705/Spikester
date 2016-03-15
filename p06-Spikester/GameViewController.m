@@ -79,7 +79,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
