@@ -104,12 +104,66 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         }
     }
     
+    //upside
+    NSUInteger arraySize3 = [upspikes count];
+    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    for(int j=0; j<arraySize3; j++){
+        //for(UIImageView *image in downspikes) {
+        UIImageView *x =[upspikes objectAtIndex:j];
+        if (CGRectIntersectsRect(bear.frame, x.frame))
+        {
+            //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+            [BirdMovement invalidate];
+            [collison invalidate];
+        }
+    }
+    
+    
+    //right side
+    NSUInteger arraySize1 = [rightspikes count];
+    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    for(int j=0; j<arraySize1; j++){
+        //for(UIImageView *image in downspikes) {
+        UIImageView *x =[rightspikes objectAtIndex:j];
+        
+        if(x.hidden == NO)
+        {
+        if (CGRectIntersectsRect(bear.frame, x.frame))
+            
+        {
+                //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+                [BirdMovement invalidate];
+                [collison invalidate];
+            }
+        }
+    }
+    
+    
+    //left side
+    NSUInteger arraySize2 = [leftspikes count];
+    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    for(int j=0; j<arraySize2; j++){
+        //for(UIImageView *image in downspikes) {
+        UIImageView *x =[leftspikes objectAtIndex:j];
+        
+        if(x.hidden == NO)
+        {
+            if (CGRectIntersectsRect(bear.frame, x.frame))
+                
+            {
+                //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+                [BirdMovement invalidate];
+                [collison invalidate];
+            }
+        }
+    }
+    
 }
 
 -(void)BirdMoving{
     
     
-    
+    //HIDE LEFT AND RIGHT SPIKES
     
     //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
     
@@ -120,6 +174,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
+        
+       
+        
+        [self randomSpikes];
     }
     if ((bear.center.x + 40) >= screenWidth)
     {
@@ -128,6 +186,12 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
+        
+        
+        
+        
+        [self randomSpikes];
+        
     }
     
     if(flg == 1)
@@ -282,27 +346,33 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 		y += widthspikes + 3;
 	}
     
-    timer = [NSTimer scheduledTimerWithTimeInterval:2	target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
     
-    //HIDE LEFT AND RIGHT SPIKES
+    //hiding left side spikes
     for(int k=0; k<11; k++)
     {
-            UILabel *x =[rightspikes objectAtIndex:k];
-            
-            x.hidden = YES;
         
-            x =[leftspikes objectAtIndex:k];
+        //hiding right side spikes
         
-            x.hidden = YES;
+        UILabel *x =[rightspikes objectAtIndex:k];
+        x.hidden = YES;
+        x =[leftspikes objectAtIndex:k];
+        x.hidden = YES;
     }
+    
+    
+ //   timer = [NSTimer scheduledTimerWithTimeInterval:2	target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
+    
+ 
     
 }
 
--(void)timerEvent:(id)sender
+//-(void)timerEvent:(id)sender
+
+-(void)randomSpikes
 {
     int max=11,min=0;
     
-    if(checkSide == 0)
+    if(checkSide == 1)
     {
         //show right side spikes
         for (int i=0;i< 3; i++)
@@ -327,7 +397,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 1;
+        checkSide = 0;
         
     }else{
         //show left side spikes
@@ -353,7 +423,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 0;
+        checkSide = 1;
         
     }
 
