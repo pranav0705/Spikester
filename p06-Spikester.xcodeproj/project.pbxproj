@@ -267,6 +267,7 @@
 			files = (
 				81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */,
 				81FB6FB11C97D34200212C2E /* bearcat.png in Resources */,
+				DC43428D1C97D51E00EE08B7 /* spike.png in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,
 				81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */,
