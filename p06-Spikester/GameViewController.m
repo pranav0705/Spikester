@@ -23,8 +23,11 @@ UILabel *lbl1;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
+
+
 @implementation GameViewController
 @synthesize bear,score;
+@synthesize upspikes, downspikes, leftspikes, rightspikes;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -162,8 +165,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [downspikes addObject:spikeView];
 		
 		x += widthspikes + 2;
 	}
@@ -190,8 +195,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+         //add spikes to array
+        [upspikes addObject:spikeView];
 		
 		x += widthspikes + 2;
 	}
@@ -223,8 +230,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [leftspikes addObject:spikeView];
 		
 		y += widthspikes + 3;
 	}
@@ -255,8 +264,10 @@ int BearFlight;
 		[spikeView addSubview:imageView];
 		
 		//add the view to the main view
-		
 		[self.view addSubview:spikeView];
+        
+        //add spikes to array
+        [rightspikes addObject:spikeView];
 		
 		y += widthspikes + 3;
 	}
