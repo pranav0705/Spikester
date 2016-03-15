@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Spikes.h"
+
 
 @interface GameViewController : UIViewController
 
+ @property (nonatomic, strong) Spikes * spikes;
+
 @end
+
+

@@ -38,10 +38,10 @@
             </objects>
             <point key="canvasLocation" x="245" y="305"/>
         </scene>
-        <!--Spikes-->
+        <!--Game View Controller-->
         <scene sceneID="KkV-Ks-1JV">
             <objects>
-                <viewController id="GEF-1K-xUE" customClass="Spikes" sceneMemberID="viewController">
+                <viewController id="GEF-1K-xUE" customClass="GameViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="IZC-FQ-bWF"/>
                         <viewControllerLayoutGuide type="bottom" id="zgZ-3g-ar8"/>
