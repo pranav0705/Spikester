@@ -17,21 +17,33 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="SPIKESTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDc-Yn-2EP">
-                                <rect key="frame" x="20" y="139" width="307" height="127"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="62"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxK-iw-Mrz">
-                                <rect key="frame" x="20" y="357" width="238" height="58"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sxK-iw-Mrz">
+                                <rect key="frame" x="181" y="273" width="238" height="58"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="58" id="Zde-Rd-iTh"/>
+                                </constraints>
                                 <state key="normal" title="Button"/>
                                 <connections>
                                     <segue destination="GEF-1K-xUE" kind="presentation" id="7cW-d5-Uyz"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SPIKESTER" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wDc-Yn-2EP">
+                                <rect key="frame" x="147" y="116" width="307" height="127"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="62"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="width" secondItem="wDc-Yn-2EP" secondAttribute="width" constant="-69" id="3kw-5Z-qVZ"/>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="96" id="8Ae-nl-uaY"/>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="height" secondItem="wDc-Yn-2EP" secondAttribute="height" constant="-69" id="FQG-CK-JHh"/>
+                            <constraint firstItem="wDc-Yn-2EP" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mdD-el-SqT"/>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="ssg-xs-cQA"/>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="top" secondItem="wDc-Yn-2EP" secondAttribute="bottom" constant="30" id="tQB-D8-Cfc"/>
+                            <constraint firstItem="sxK-iw-Mrz" firstAttribute="centerX" secondItem="wDc-Yn-2EP" secondAttribute="centerX" id="xzf-Hb-2VT"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
