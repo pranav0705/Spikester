@@ -18,6 +18,8 @@
 @property (nonatomic, strong) NSMutableArray * downspikes;
 @property (nonatomic, strong) NSMutableArray * leftspikes;
 @property (nonatomic, strong) NSMutableArray * rightspikes;
+
+@property (nonatomic, strong) NSTimer *timer;
 @end
 
 
