@@ -16,7 +16,7 @@
 UIDynamicAnimator* _animator;
 UIGravityBehavior* _gravity;
 UICollisionBehavior* _collision; //setting boundaries of falling
-NSTimer *BirdMovement;
+NSTimer *BirdMovement,*collison;
 CGRect screenRect;
 CGFloat screenWidth;
 UILabel *lbl1;
@@ -33,6 +33,9 @@ int BearFlight;
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 	
+   // downspikes = [[NSMutableArray alloc] initWithCapacity:8];
+    downspikes = [NSMutableArray array];
+    
 	[self generatingSpikes];
     //getting screen sizes
     screenRect = [[UIScreen mainScreen] bounds];
@@ -71,7 +74,9 @@ int BearFlight;
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.05 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    
+    collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(Coll) userInfo:nil repeats:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,7 +84,27 @@ int BearFlight;
     // Dispose of any resources that can be recreated.
 }
 
+-(void)Coll{
+    //code for intersection
+    NSUInteger arraySize = [downspikes count];
+    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    for(int j=0; j<arraySize; j++){
+        //for(UIImageView *image in downspikes) {
+        UIImageView *x =[downspikes objectAtIndex:j];
+        if (CGRectIntersectsRect(bear.frame, x.frame))
+        {
+            [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+            [BirdMovement invalidate];
+            [collison invalidate];
+        }
+    }
+    
+}
+
 -(void)BirdMoving{
+    
+    
+    
     
     //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
     
@@ -121,6 +146,8 @@ int BearFlight;
 	CGFloat screenHeight = screenSize.height;
 	
 	int widthspikes = screenWidth/8;
+    
+    
 	
 	//DOWN SPIKES
 	int x=0;
