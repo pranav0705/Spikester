@@ -134,6 +134,11 @@
 			children = (
 				81FB6FB51C97E80000212C2E /* bearcat1.png */,
 				81FB6FB01C97D34100212C2E /* bearcat.png */,
+                188E48EA1C994CA400C477FB /* gameover.wav */,
+                188E48EB1C994CA400C477FB /* jump.wav */,
+                188E48EC1C994CA400C477FB /* touch.wav */,
+                108D4FF91C98D91700AC581D /* fish.png */,
+
 				18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */,
 				18A1BB791C9691CC0001AFD5 /* p06-SpikesterTests */,
 				18A1BB841C9691CC0001AFD5 /* p06-SpikesterUITests */,
@@ -163,6 +168,7 @@
 				18601F911C980D610046F7AE /* abc.png */,
 				18601F8D1C97FD7C0046F7AE /* 1.jpg */,
 				DC43428C1C97D51E00EE08B7 /* spike.png */,
+                18601FA41C9927740046F7AE /* Images */,
 				18A1BB631C9691CC0001AFD5 /* AppDelegate.h */,
 				18A1BB641C9691CC0001AFD5 /* AppDelegate.m */,
 				18A1BB661C9691CC0001AFD5 /* ViewController.h */,

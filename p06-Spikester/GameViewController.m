@@ -212,7 +212,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 -(void)addTrophy{
 
-
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     CGFloat screenWidth = screenSize.width;
