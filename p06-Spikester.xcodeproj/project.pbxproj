@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		106952FB1C9A13C100513351 /* Baxter.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 106952FA1C9A13C100513351 /* Baxter.jpg */; };
 		18601F8E1C97FD7C0046F7AE /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18601F8D1C97FD7C0046F7AE /* 1.jpg */; };
 		18601F921C980D610046F7AE /* abc.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F911C980D610046F7AE /* abc.png */; };
 		18601F941C9811540046F7AE /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F931C9811540046F7AE /* PlayButton.png */; };
@@ -48,6 +49,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		106952FA1C9A13C100513351 /* Baxter.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Baxter.jpg; sourceTree = "<group>"; };
 		18601F8D1C97FD7C0046F7AE /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		18601F911C980D610046F7AE /* abc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abc.png; sourceTree = "<group>"; };
 		18601F931C9811540046F7AE /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 		18A1BB541C9691CC0001AFD5 = {
 			isa = PBXGroup;
 			children = (
+				106952FA1C9A13C100513351 /* Baxter.jpg */,
 				188E48EA1C994CA400C477FB /* gameover.wav */,
 				188E48EB1C994CA400C477FB /* jump.wav */,
 				188E48EC1C994CA400C477FB /* touch.wav */,
@@ -319,6 +322,7 @@
 				81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */,
 				18601F8E1C97FD7C0046F7AE /* 1.jpg in Resources */,
 				DC43429D1C99514B00EE08B7 /* trophy.png in Resources */,
+				106952FB1C9A13C100513351 /* Baxter.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
