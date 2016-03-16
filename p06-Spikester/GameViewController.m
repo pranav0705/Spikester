@@ -19,7 +19,7 @@ UICollisionBehavior* _collision; //setting boundaries of falling
 NSTimer *BirdMovement, *collison, *trophyCollison;
 CGRect screenRect;
 CGFloat screenWidth;
-UILabel *lbl1;
+UILabel *scoreLable;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
@@ -52,7 +52,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-	
+    //BACKGROUND COLOR
+    self.view.backgroundColor = [UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1];
+    
+	//GAME SOUND
     NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
     NSURL *touchUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"touch" ofType:@"wav"]];
@@ -60,57 +63,46 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     NSURL *gameOverUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)gameOverUrl,&gameoverSound);
     
+    //ARRAY INITIALIZATION
     upspikes = [NSMutableArray array];
     downspikes = [NSMutableArray array];
     leftspikes = [NSMutableArray array];
     rightspikes = [NSMutableArray array];
-
-    //Add tropy random generation
-	[self addTrophy];
-	
-	[self generatingSpikes];
+    
     //getting screen sizes
     screenRect = [[UIScreen mainScreen] bounds];
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
     
-    //setting the image
-    //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
-	
-    //setting bear image
-    //self.bearcatview = [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2,screenHeight/2,50,50)];
-    //self.bearcatview.backgroundColor = [UIColor blueColor];
+    //creating circle
+    circleLayer = [CAShapeLayer layer];
+    circleLayer.lineWidth = 3.0f;
+    [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 100, screenHeight/2 - 100, 200, 200)] CGPath]];
+    [circleLayer setStrokeColor:[[UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1] CGColor]];
+    [circleLayer setFillColor:[[UIColor whiteColor] CGColor]];
+    [[self.view layer] addSublayer:circleLayer];
     
+    //setting score
+    scoreLable = [[UILabel alloc] init];
+    [scoreLable setFrame:CGRectMake(screenWidth/2 - 40,screenHeight/2 - 40,80,80)];
+    scoreLable.backgroundColor=[UIColor clearColor];
+    scoreLable.textColor=[UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1];
+    scoreLable.userInteractionEnabled=YES;
+    scoreLable.textAlignment = NSTextAlignmentCenter;
+    [scoreLable setFont:[UIFont fontWithName:@"Courier-Bold" size:65]];
+    [self.view addSubview:scoreLable];
+    scoreLable.text= @"00";
+
+    //Add tropy random generation
+	[self addTrophy];
+	
+    //Generate spikes around
+	[self generatingSpikes];
+    
+    //Bearcat Generation
     bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
     bear.image=[UIImage imageNamed:@"bearcat.gif"];
     [self.view addSubview: bear];
-
-    //[bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
-	
-    //score
-    self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
-    self.score.alpha = 0.5;
-    self.score.layer.cornerRadius = 50;
-    self.score.backgroundColor = [UIColor blueColor];
-	
-    //creating circle
-    circleLayer = [CAShapeLayer layer];
-    [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
-    
-    [[self.view layer] addSublayer:circleLayer];
-    
-    [circleLayer setStrokeColor:[[UIColor blackColor] CGColor]];
-    [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
-	
-    //setting score
-    lbl1 = [[UILabel alloc] init];
-    [lbl1 setFrame:CGRectMake(screenWidth/2 - 40,screenHeight/2 - 40,80,80)];
-    lbl1.backgroundColor=[UIColor clearColor];
-    lbl1.textColor=[UIColor blackColor];
-    lbl1.userInteractionEnabled=YES;
-    lbl1.textAlignment = NSTextAlignmentCenter;
-    [self.view addSubview:lbl1];
-    lbl1.text= @"0";
     
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
@@ -119,8 +111,8 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
     
-    //[self trophyCollison];
 }
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -221,20 +213,18 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     int xValue = (arc4random() % (int) (screenWidth-200));
     int yValue = (arc4random() % (int) (screenHeight-200));
 
-		
-		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue + 60, yValue + 60, 25, 25)];
-		trophy.image = [UIImage imageNamed:@"trophy.png"];
+    trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue + 60, yValue + 60, 30, 30)];
+    trophy.image = [UIImage imageNamed:@"trophy.png"];
 
-		//add the view to the main view
-		[self.view addSubview:trophy];
+    //add the view to the main view
+    [self.view addSubview:trophy];
 	
 }
-
 
 -(void)BirdMoving{
     
 	//LEFT AND RIGHT WALL ON TOUCH
-    if ((bear.center.x - 40) < 10) {
+    if ((bear.center.x - 22) < 10) {
         flg = 1;
         scr_counter++;
         
@@ -243,18 +233,16 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.type = kCATransitionFade;
         animation.duration = 0.75;
-        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        [scoreLable.layer addAnimation:animation forKey:@"kCATransitionFade"];
         
         //This will fade:
-        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        [scoreLable setText:[NSString stringWithFormat:@"%02d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
-        
-       
         
         [self randomSpikes];
         [self wallTouchSoundPlay];
     }
-    if ((bear.center.x + 40) >= screenWidth)
+    if ((bear.center.x + 22) >= screenWidth)
     {
         flg = 0;
         //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
@@ -264,10 +252,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
         animation.type = kCATransitionFade;
         animation.duration = 0.75;
-        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        [scoreLable.layer addAnimation:animation forKey:@"kCATransitionFade"];
         
         // This will fade:
-        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        [scoreLable setText:[NSString stringWithFormat:@"%02d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
         [self randomSpikes];
         //play touch wall sound
@@ -527,24 +515,18 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 //code to rotate image on game over
 -(void)rotateImage{
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.50]; // Set how long your animation goes for
-    [UIView setAnimationRepeatCount:10000];
-    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     
-    bear.transform = CGAffineTransformMakeRotation(360); // if angle is in radians
+    CABasicAnimation* rotationAnimation;
+    rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat: 3.14 * 2.0 /* full rotation*/ * 5 * 0.1 ];
+    rotationAnimation.duration = 0.2;
+    rotationAnimation.cumulative = YES;
+    rotationAnimation.repeatCount = 10000;
     
-    // if you want to use degrees instead of radians add the following above your @implementation
-    // #define degreesToRadians(x)(x * M_PI / 180)
-    // and change the above code to: player.transform = CGAffineTransformMakeRotation(degreesToRadians(angle));
-    
-    [UIView commitAnimations];
+    [bear.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     [self gameOverSoundPlay];
-    
-    // The rotation code above will rotate your object to the angle and not rotate beyond that.
-    // If you want to rotate the object again but continue from the current angle, use this instead:
-    // player.transform = CGAffineTransformRotate(player.transform, degreesToRadians(angle));
+
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
@@ -552,5 +534,12 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [self jumpSoundPlay];
     
     BearFlight = 20;
+}
+
+
+//REMOVE PHONE TOOLBAR
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
 }
 @end
