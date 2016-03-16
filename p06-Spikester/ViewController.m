@@ -41,6 +41,10 @@
     [self.view addSubview:credit];
     [credit setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"abc.png"]]];
 }
+-(BOOL)prefersStatusBarHidden
+{
+    return YES;
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
