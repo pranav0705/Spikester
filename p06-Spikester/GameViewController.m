@@ -25,6 +25,7 @@ int flg = 0,scr_counter = 0;
 int BearFlight;
 int fishCnt=0;
 
+
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
@@ -56,6 +57,7 @@ UIImageView *fishView1;
     //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
 	
     //setting bear image
+    //bear = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
     [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
 	
     //score
@@ -82,6 +84,9 @@ UIImageView *fishView1;
     lbl1.textAlignment = NSTextAlignmentCenter;
     [self.view addSubview:lbl1];
     lbl1.text= @"0";
+    
+    
+    
     
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
@@ -119,9 +124,11 @@ UIImageView *fishView1;
         UIImageView *x =[downspikes objectAtIndex:j];
         if (CGRectIntersectsRect(bear.frame, x.frame))
         {
-            [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+            
+           // [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
             [BirdMovement invalidate];
             [collison invalidate];
+            [self rotateImage];
         }
     }
     
@@ -136,6 +143,7 @@ UIImageView *fishView1;
             //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
             [BirdMovement invalidate];
             [collison invalidate];
+            [self rotateImage];
         }
     }
     
@@ -155,6 +163,7 @@ UIImageView *fishView1;
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
                 [collison invalidate];
+            [self rotateImage];
             }
         }
     }
@@ -175,6 +184,7 @@ UIImageView *fishView1;
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
                 [collison invalidate];
+                [self rotateImage];
             }
         }
     }
@@ -236,7 +246,17 @@ UIImageView *fishView1;
         flg = 1;
       //  NSLog(@"coords: %f",bear.center.x);
         scr_counter++;
-        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        
+        //animation for text changing
+        CATransition *animation = [CATransition animation];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.75;
+        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        
+        // This will fade:
+         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+       
         [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
         
        
@@ -248,7 +268,16 @@ UIImageView *fishView1;
         flg = 0;
         // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
         scr_counter++;
+        //animation for text changing
+        CATransition *animation = [CATransition animation];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.75;
+        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        
+        // This will fade:
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        
         [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
         
         
@@ -430,7 +459,7 @@ UIImageView *fishView1;
 {
     int max=11,min=0;
     
-    if(checkSide == 1)
+    if(checkSide == 0)
     {
         //show right side spikes
         for (int i=0;i< 3; i++)
@@ -443,6 +472,9 @@ UIImageView *fishView1;
                     UIImageView *x =[rightspikes objectAtIndex:k];
                     //x.hidden = NO;
                     [self showSpikesAnimate:x];
+                    
+                    
+                    
                 }
             }
         }
@@ -455,7 +487,7 @@ UIImageView *fishView1;
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 0;
+        checkSide = 1;
         
     }else{
         //show left side spikes
@@ -481,7 +513,7 @@ UIImageView *fishView1;
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 1;
+        checkSide = 0;
         
     }
 
@@ -489,6 +521,7 @@ UIImageView *fishView1;
 
 - (void)hideSpikesAnimate:(UIImageView *)imageView
 {
+    /*
     imageView.alpha = 1.0f;
     // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
     [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
@@ -497,12 +530,42 @@ UIImageView *fishView1;
     } completion:^(BOOL finished) {
         // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
         imageView.hidden = YES;
-    }];
+    }]; */
+    
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [imageView.layer addAnimation:transition forKey:nil];
+    imageView.hidden = YES;
+}
+
+
+//code to rotate image on game over
+-(void)rotateImage{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.50]; // Set how long your animation goes for
+    [UIView setAnimationRepeatCount:10000];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    bear.transform = CGAffineTransformMakeRotation(360); // if angle is in radians
+    
+    // if you want to use degrees instead of radians add the following above your @implementation
+    // #define degreesToRadians(x)(x * M_PI / 180)
+    // and change the above code to: player.transform = CGAffineTransformMakeRotation(degreesToRadians(angle));
+    
+    [UIView commitAnimations];
+    
+    // The rotation code above will rotate your object to the angle and not rotate beyond that.
+    // If you want to rotate the object again but continue from the current angle, use this instead:
+    // player.transform = CGAffineTransformRotate(player.transform, degreesToRadians(angle));
 }
 
 - (void)showSpikesAnimate:(UIImageView *)imageView
 {
-    imageView.alpha = 1.0f;
+  /*  imageView.alpha = 1.0f;
     // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
     [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
         // Animate the alpha value of your imageView from 1.0 to 0.0 here
@@ -510,7 +573,16 @@ UIImageView *fishView1;
     } completion:^(BOOL finished) {
         // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
         imageView.hidden = NO;
-    }];
+    }]; */
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [imageView.layer addAnimation:transition forKey:nil];
+    imageView.hidden = NO;
+
 }
 
 
