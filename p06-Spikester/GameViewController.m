@@ -24,6 +24,8 @@ CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
 
+int touchCount =0;
+
 CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
@@ -104,12 +106,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     bear.image=[UIImage imageNamed:@"bearcat.gif"];
     [self.view addSubview: bear];
     
-    //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
-    
-    collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(spikesCollision) userInfo:nil repeats:YES];
-    
-    trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
+   
     
 }
 
@@ -117,6 +114,14 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)GameOver:(id)sender {
+    [BirdMovement invalidate];
+    [collison invalidate];
+    [trophyCollison invalidate];
+    touchCount = 0;
+    //[self viewDidLoad];
+    //[self.view setNeedsDisplay];
 }
 
 -(void)spikesCollision{
@@ -133,6 +138,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             [BirdMovement invalidate];
             [collison invalidate];
             [self rotateImage];
+            _goHome.hidden=NO;
         }
     }
     
@@ -218,6 +224,8 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
     //add the view to the main view
     [self.view addSubview:trophy];
+    
+    [self trophyAnimation];
 	
 }
 
@@ -530,6 +538,17 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 }
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    
+    if(touchCount == 0)
+    {
+        //timer
+        BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+        
+        collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(spikesCollision) userInfo:nil repeats:YES];
+        
+        trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
+    }
+    touchCount++;
     //play jump sound on touch
     [self jumpSoundPlay];
     
@@ -541,5 +560,18 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
+}
+
+//JUMPING TROPHY
+- (void)trophyAnimation {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = 0.4;
+    animation.repeatCount = 1000;
+    animation.fromValue = [NSValue valueWithCGPoint:trophy.center];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(trophy.center.x, trophy.center.y-20)];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.autoreverses = YES;
+    animation.removedOnCompletion = NO;
+    [trophy.layer addAnimation:animation forKey:@"position"];
 }
 @end
