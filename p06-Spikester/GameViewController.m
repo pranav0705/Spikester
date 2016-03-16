@@ -24,6 +24,7 @@ CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
 
+
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
@@ -35,12 +36,25 @@ CAShapeLayer *circleLayer;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+   
+    
 	
+    NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
+    NSURL *touchUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"touch" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)touchUrl,&walltouchSound);
+    NSURL *gameOverUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)gameOverUrl,&gameoverSound);
+    
     upspikes = [NSMutableArray array];
     downspikes = [NSMutableArray array];
     leftspikes = [NSMutableArray array];
     rightspikes = [NSMutableArray array];
-    
+
+    //Add tropy random generation
+	[self addTrophy];
+	
 	[self generatingSpikes];
     //getting screen sizes
     screenRect = [[UIScreen mainScreen] bounds];
@@ -72,7 +86,7 @@ CAShapeLayer *circleLayer;
     
     [[self.view layer] addSublayer:circleLayer];
     
-    [circleLayer setStrokeColor:[[UIColor redColor] CGColor]];
+    [circleLayer setStrokeColor:[[UIColor blackColor] CGColor]];
     [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
 	
     //setting score
@@ -97,23 +111,26 @@ CAShapeLayer *circleLayer;
 }
 
 -(void)Coll{
+	
     //code for intersection
     NSUInteger arraySize = [downspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    //NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[downspikes objectAtIndex:j];
         if (CGRectIntersectsRect(bear.frame, x.frame))
         {
-            [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
+            
+           // [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
             [BirdMovement invalidate];
             [collison invalidate];
+            [self rotateImage];
         }
     }
     
     //upside
     NSUInteger arraySize3 = [upspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+  //  NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize3; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[upspikes objectAtIndex:j];
@@ -122,13 +139,14 @@ CAShapeLayer *circleLayer;
             //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
             [BirdMovement invalidate];
             [collison invalidate];
+            [self rotateImage];
         }
     }
     
     
     //right side
     NSUInteger arraySize1 = [rightspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+  //  NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize1; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[rightspikes objectAtIndex:j];
@@ -141,6 +159,7 @@ CAShapeLayer *circleLayer;
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
                 [collison invalidate];
+            [self rotateImage];
             }
         }
     }
@@ -148,7 +167,7 @@ CAShapeLayer *circleLayer;
     
     //left side
     NSUInteger arraySize2 = [leftspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    //NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize2; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[leftspikes objectAtIndex:j];
@@ -161,45 +180,82 @@ CAShapeLayer *circleLayer;
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
                 [collison invalidate];
+                [self rotateImage];
             }
         }
     }
     
+    if (CGRectIntersectsRect(bear.frame, trophy.frame))
+    {
+        trophy.hidden=true;
+        [self addTrophy];
+    }
+    
 }
+
+-(void)addTrophy{
+
+
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    CGFloat screenHeight = screenSize.height;
+    
+    //random trophy generation for bearcat
+    int xValue = (arc4random() % (int) screenWidth);
+    int yValue = (arc4random() % (int) screenHeight);
+
+		
+		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue, 25, 25)];
+		trophy.image = [UIImage imageNamed:@"fish.png"];
+
+		//add the view to the main view
+		[self.view addSubview:trophy];
+	
+}
+
 
 -(void)BirdMoving{
     
-    
-    //HIDE LEFT AND RIGHT SPIKES
-    
-    //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
-    
+	//LEFT AND RIGHT WALL ON TOUCH
     if ((bear.center.x - 40) < 10) {
-        //  bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
         flg = 1;
-        NSLog(@"coords: %f",bear.center.x);
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
         
-       
+        //animation for text changing
+        CATransition *animation = [CATransition animation];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.75;
+        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
         
+        //This will fade:
+        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+       
+        [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
+
         [self randomSpikes];
+        
+        //play touch wall sound
+        [self wallTouchSoundPlay];
     }
     if ((bear.center.x + 40) >= screenWidth)
     {
         flg = 0;
-        // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
+        //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
         [self randomSpikes];
-        
+        //play touch wall sound
+        [self wallTouchSoundPlay];
     }
+    
     
     if(flg == 1)
     {
-        
         bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
     }
     else
@@ -211,6 +267,7 @@ CAShapeLayer *circleLayer;
 	
 }
 
+// SPIKES GENERATION FOR UP DOWN LEFT AND RIGHT
 - (void) generatingSpikes {
 	CGRect screenBound = [[UIScreen mainScreen] bounds];
 	CGSize screenSize = screenBound.size;
@@ -219,8 +276,6 @@ CAShapeLayer *circleLayer;
 	
 	int widthspikes = screenWidth/8;
     
-    
-	
 	//DOWN SPIKES
 	int x=0;
 	int y=screenHeight - widthspikes;
@@ -350,32 +405,24 @@ CAShapeLayer *circleLayer;
 	}
     
     
-    //hiding left side spikes
+    //hiding left/right side spikes
     for(int k=0; k<11; k++)
     {
         
         //hiding right side spikes
-        
         UILabel *x =[rightspikes objectAtIndex:k];
         x.hidden = YES;
+        //hiding left side spikes
         x =[leftspikes objectAtIndex:k];
         x.hidden = YES;
     }
-    
-    
- //   timer = [NSTimer scheduledTimerWithTimeInterval:2	target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
-    
- 
-    
 }
-
-//-(void)timerEvent:(id)sender
 
 -(void)randomSpikes
 {
     int max=11,min=0;
     
-    if(checkSide == 1)
+    if(checkSide == 0)
     {
         //show right side spikes
         for (int i=0;i< 3; i++)
@@ -388,6 +435,9 @@ CAShapeLayer *circleLayer;
                     UIImageView *x =[rightspikes objectAtIndex:k];
                     //x.hidden = NO;
                     [self showSpikesAnimate:x];
+                    
+                    
+                    
                 }
             }
         }
@@ -400,7 +450,7 @@ CAShapeLayer *circleLayer;
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 0;
+        checkSide = 1;
         
     }else{
         //show left side spikes
@@ -426,40 +476,59 @@ CAShapeLayer *circleLayer;
             //x.hidden = YES;
             [self hideSpikesAnimate:x];
         }
-        checkSide = 1;
-        
+        checkSide = 0;
     }
-
 }
 
+// HIDE SPIKES WITH ANIMATION
 - (void)hideSpikesAnimate:(UIImageView *)imageView
 {
-    imageView.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
-    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
-        // Animate the alpha value of your imageView from 1.0 to 0.0 here
-        imageView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
-        imageView.hidden = YES;
-    }];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [imageView.layer addAnimation:transition forKey:nil];
+    imageView.hidden = YES;
 }
 
+// SHOW SPIKES WITH ANIMATION
 - (void)showSpikesAnimate:(UIImageView *)imageView
 {
-    imageView.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
-    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
-        // Animate the alpha value of your imageView from 1.0 to 0.0 here
-        imageView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
-        imageView.hidden = NO;
-    }];
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [imageView.layer addAnimation:transition forKey:nil];
+    imageView.hidden = NO;
 }
 
+//code to rotate image on game over
+-(void)rotateImage{
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.50]; // Set how long your animation goes for
+    [UIView setAnimationRepeatCount:10000];
+    [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
+    
+    bear.transform = CGAffineTransformMakeRotation(360); // if angle is in radians
+    
+    // if you want to use degrees instead of radians add the following above your @implementation
+    // #define degreesToRadians(x)(x * M_PI / 180)
+    // and change the above code to: player.transform = CGAffineTransformMakeRotation(degreesToRadians(angle));
+    
+    [UIView commitAnimations];
+    
+    [self gameOverSoundPlay];
+    
+    // The rotation code above will rotate your object to the angle and not rotate beyond that.
+    // If you want to rotate the object again but continue from the current angle, use this instead:
+    // player.transform = CGAffineTransformRotate(player.transform, degreesToRadians(angle));
+}
 
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //play jump sound on touch
+    [self jumpSoundPlay];
     
     BearFlight = 20;
 }
