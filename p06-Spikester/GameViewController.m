@@ -218,11 +218,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     CGFloat screenHeight = screenSize.height;
     
     //random trophy generation for bearcat
-    int xValue = (arc4random() % (int) screenWidth);
-    int yValue = (arc4random() % (int) screenHeight);
+    int xValue = (arc4random() % (int) (screenWidth-200));
+    int yValue = (arc4random() % (int) (screenHeight-200));
 
 		
-		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue, 25, 25)];
+		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue + 60, yValue + 60, 25, 25)];
 		trophy.image = [UIImage imageNamed:@"trophy.png"];
 
 		//add the view to the main view
