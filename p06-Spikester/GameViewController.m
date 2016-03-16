@@ -454,9 +454,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                     UIImageView *x =[rightspikes objectAtIndex:k];
                     //x.hidden = NO;
                     [self showSpikesAnimate:x];
-                    
-                    
-                    
                 }
             }
         }
