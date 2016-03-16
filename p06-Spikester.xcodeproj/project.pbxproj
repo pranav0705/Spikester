@@ -25,6 +25,9 @@
 		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
 		DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC43428A1C97D1A500EE08B7 /* Spikes.m */; };
 		DC43428D1C97D51E00EE08B7 /* spike.png in Resources */ = {isa = PBXBuildFile; fileRef = DC43428C1C97D51E00EE08B7 /* spike.png */; };
+		DC4342951C9920F900EE08B7 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342941C9920F900EE08B7 /* jump.wav */; };
+		DC4342981C9926CA00EE08B7 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342961C9926CA00EE08B7 /* gameover.wav */; };
+		DC4342991C9926CA00EE08B7 /* touch.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342971C9926CA00EE08B7 /* touch.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +76,9 @@
 		DC4342891C97D1A500EE08B7 /* Spikes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
 		DC43428A1C97D1A500EE08B7 /* Spikes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spikes.m; sourceTree = "<group>"; };
 		DC43428C1C97D51E00EE08B7 /* spike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spike.png; sourceTree = "<group>"; };
+		DC4342941C9920F900EE08B7 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
+		DC4342961C9926CA00EE08B7 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameover.wav; sourceTree = "<group>"; };
+		DC4342971C9926CA00EE08B7 /* touch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touch.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +132,9 @@
 		18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */ = {
 			isa = PBXGroup;
 			children = (
+				DC4342961C9926CA00EE08B7 /* gameover.wav */,
+				DC4342971C9926CA00EE08B7 /* touch.wav */,
+				DC4342941C9920F900EE08B7 /* jump.wav */,
 				18601F951C98124C0046F7AE /* 2.jpg */,
 				18601F931C9811540046F7AE /* PlayButton.png */,
 				18601F911C980D610046F7AE /* abc.png */,
@@ -280,13 +289,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4342951C9920F900EE08B7 /* jump.wav in Resources */,
 				81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */,
 				81FB6FB11C97D34200212C2E /* bearcat.png in Resources */,
 				18601F961C98124C0046F7AE /* 2.jpg in Resources */,
+				DC4342991C9926CA00EE08B7 /* touch.wav in Resources */,
 				DC43428D1C97D51E00EE08B7 /* spike.png in Resources */,
 				18601F921C980D610046F7AE /* abc.png in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,
+				DC4342981C9926CA00EE08B7 /* gameover.wav in Resources */,
 				18601F941C9811540046F7AE /* PlayButton.png in Resources */,
 				81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */,
 				108D4FFA1C98D91700AC581D /* fish.png in Resources */,
