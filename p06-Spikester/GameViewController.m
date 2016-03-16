@@ -23,6 +23,7 @@ UILabel *lbl1;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
+int fishCnt=0;
 
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
@@ -30,7 +31,9 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 @implementation GameViewController
 @synthesize bear,score;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
-@synthesize timer;
+@synthesize timer,fish;
+UIImageView *fishView;
+UIImageView *fishView1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,7 +43,9 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     downspikes = [NSMutableArray array];
     leftspikes = [NSMutableArray array];
     rightspikes = [NSMutableArray array];
-    
+	fish = [NSMutableArray array];
+	[self addFish];
+	
 	[self generatingSpikes];
     //getting screen sizes
     screenRect = [[UIScreen mainScreen] bounds];
@@ -65,7 +70,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     [[self.view layer] addSublayer:circleLayer];
     
-    [circleLayer setStrokeColor:[[UIColor redColor] CGColor]];
+    [circleLayer setStrokeColor:[[UIColor blackColor] CGColor]];
     [circleLayer setFillColor:[[UIColor clearColor] CGColor]];
 	
     //setting score
@@ -90,9 +95,25 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 }
 
 -(void)Coll{
+	
+	NSUInteger arraySizef = [fish count];
+	//NSLog(@"count :- %lu",(unsigned long)arraySize);
+	for(int j=0; j<arraySizef; j++){
+		//for(UIImageView *image in downspikes) {
+		UIImageView *x =[fish objectAtIndex:j];
+		if (CGRectIntersectsRect(bear.frame, x.frame))
+		{
+		//	NSLog(@"fish Count4: %d",fishCnt);
+			fishCnt=1;
+		//	NSLog(@"fish Count5: %d",fishCnt);
+			[self addFish];
+		}
+	}
+
+	
     //code for intersection
     NSUInteger arraySize = [downspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    //NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[downspikes objectAtIndex:j];
@@ -106,7 +127,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     //upside
     NSUInteger arraySize3 = [upspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+  //  NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize3; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[upspikes objectAtIndex:j];
@@ -121,7 +142,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     //right side
     NSUInteger arraySize1 = [rightspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+  //  NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize1; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[rightspikes objectAtIndex:j];
@@ -141,7 +162,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     //left side
     NSUInteger arraySize2 = [leftspikes count];
-    NSLog(@"count :- %lu",(unsigned long)arraySize);
+    //NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize2; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[leftspikes objectAtIndex:j];
@@ -160,9 +181,52 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
 }
 
+-(void)addFish{
+
+	//Add Fish
+	int x=20;
+	int y=350;
+
+	NSLog(@"fish Count: %d",fishCnt);
+	if(fishCnt==0)
+	{
+		fishView1.hidden=YES;
+		fishView.hidden=NO;
+		fishView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, 20, 20)];
+		fishView.image = [UIImage imageNamed:@"fish.png"];
+		
+		NSLog(@"fish Count0: %d",fishCnt);
+		fishView.hidden=NO;
+		//add the view to the main view
+		[self.view addSubview:fishView];
+		
+		//add spikes to array
+		[fish addObject:fishView];
+
+	}
+	else if(fishCnt==1)
+	{
+		fishCnt=0;
+		fishView1.hidden=NO;
+		fishView.hidden=YES;
+		x=350;
+		y=450;
+		UIImageView *fishView1 = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, 20, 20)];
+		fishView1.image = [UIImage imageNamed:@"fish.png"];
+		
+		NSLog(@"fish Count1: %d",fishCnt);
+		[self.view addSubview:fishView1];
+		
+		//add spikes to array
+		[fish addObject:fishView1];
+
+	}
+}
+
+
 -(void)BirdMoving{
     
-    
+	
     //HIDE LEFT AND RIGHT SPIKES
     
     //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
@@ -170,7 +234,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     if ((bear.center.x - 40) < 10) {
         //  bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
         flg = 1;
-        NSLog(@"coords: %f",bear.center.x);
+      //  NSLog(@"coords: %f",bear.center.x);
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
@@ -358,12 +422,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         x =[leftspikes objectAtIndex:k];
         x.hidden = YES;
     }
-    
-    
- //   timer = [NSTimer scheduledTimerWithTimeInterval:2	target:self selector:@selector(timerEvent:) userInfo:nil repeats:YES];
-    
- 
-    
 }
 
 //-(void)timerEvent:(id)sender
