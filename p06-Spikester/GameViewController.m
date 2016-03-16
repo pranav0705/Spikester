@@ -24,15 +24,31 @@ CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
 
-
+CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
 @implementation GameViewController
-@synthesize bear,score,bearcatview;
+@synthesize bear,score,trophy;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
 @synthesize timer;
-CAShapeLayer *circleLayer;
+
+
+- (void) jumpSoundPlay
+{
+    AudioServicesPlaySystemSound(jumpSound);
+}
+
+- (void) wallTouchSoundPlay
+{
+    AudioServicesPlaySystemSound(walltouchSound);
+}
+
+- (void) gameOverSoundPlay
+{
+    AudioServicesPlaySystemSound(gameoverSound);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -221,8 +237,6 @@ CAShapeLayer *circleLayer;
     if ((bear.center.x - 40) < 10) {
         flg = 1;
         scr_counter++;
-        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-        [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
         
         //animation for text changing
         CATransition *animation = [CATransition animation];
@@ -233,12 +247,11 @@ CAShapeLayer *circleLayer;
         
         //This will fade:
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-       
-        [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
-
-        [self randomSpikes];
+        [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
         
-        //play touch wall sound
+       
+        
+        [self randomSpikes];
         [self wallTouchSoundPlay];
     }
     if ((bear.center.x + 40) >= screenWidth)
@@ -246,6 +259,14 @@ CAShapeLayer *circleLayer;
         flg = 0;
         //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
         scr_counter++;
+        //animation for text changing
+        CATransition *animation = [CATransition animation];
+        animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+        animation.type = kCATransitionFade;
+        animation.duration = 0.75;
+        [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
+        
+        // This will fade:
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
         [self randomSpikes];
