@@ -24,7 +24,7 @@ CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
 
-
+CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
@@ -78,8 +78,14 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
 	
     //setting bear image
-    //bear = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
-    [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
+    //self.bearcatview = [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2,screenHeight/2,50,50)];
+    //self.bearcatview.backgroundColor = [UIColor blueColor];
+    
+    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
+    bear.image=[UIImage imageNamed:@"bearcat.gif"];
+    [self.view addSubview: bear];
+
+    //[bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
 	
     //score
     self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
@@ -88,7 +94,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     self.score.backgroundColor = [UIColor blueColor];
 	
     //creating circle
-    CAShapeLayer *circleLayer = [CAShapeLayer layer];
+    circleLayer = [CAShapeLayer layer];
     [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
     
     [[self.view layer] addSublayer:circleLayer];
@@ -107,7 +113,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.06 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
     
     collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(Coll) userInfo:nil repeats:YES];
     
@@ -242,12 +248,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         
         //This will fade:
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-       
-        [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
-
-        [self randomSpikes];
+        [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
         
-        //play touch wall sound
+       
+        
+        [self randomSpikes];
         [self wallTouchSoundPlay];
     }
     if ((bear.center.x + 40) >= screenWidth)
@@ -264,9 +269,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         
         // This will fade:
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-        
-        [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
-        
+        [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
         [self randomSpikes];
         //play touch wall sound
         [self wallTouchSoundPlay];

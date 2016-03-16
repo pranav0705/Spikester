@@ -64,14 +64,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mtr-bQ-wzv">
-                                <rect key="frame" x="180" y="307" width="52" height="44"/>
-                            </imageView>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-s5-uMR">
+                                <rect key="frame" x="81" y="203" width="251" height="66"/>
+                                <color key="backgroundColor" red="0.13725490200000001" green="0.31764705879999999" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <state key="normal" title="HOME">
+                                    <color key="titleColor" red="0.48767685529999999" green="0.74526837170000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="GameOver:" destination="GEF-1K-xUE" eventType="touchUpInside" id="rbP-kz-YsG"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
-                        <outlet property="bear" destination="mtr-bQ-wzv" id="lgL-oA-Glr"/>
+                        <outlet property="goHome" destination="D0y-s5-uMR" id="opb-Jf-gy2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jnO-p6-aAx" userLabel="First Responder" sceneMemberID="firstResponder"/>
