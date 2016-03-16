@@ -22,6 +22,7 @@ CGFloat screenWidth;
 UILabel *scoreLable;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
+int backgroundColorCount = 1;
 int BearFlight;
 
 int touchCount =0;
@@ -243,7 +244,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         [self randomSpikes];
         [self wallTouchSoundPlay];
         
-        if(scr_counter%5 == 0)
+        if(scr_counter%2 == 0)
         {
             [self colorBackgroundChange];
         }
@@ -267,7 +268,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         //play touch wall sound
         [self wallTouchSoundPlay];
         
-        if(scr_counter%5 == 0)
+        if(scr_counter%2 == 0)
         {
             [self colorBackgroundChange];
         }
@@ -604,15 +605,27 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 - (void)colorBackgroundChange{
     int red = 210, green = 210, blue = 210;
-    if(scr_counter == 5)
-    {
-        red = arc4random()% 100;
-    }else if(scr_counter == 10){
-        green = arc4random()% 100;
-    }else if(scr_counter == 15){
-        blue = arc4random()% 100;
-    }
     
+    switch (backgroundColorCount) {
+        case 1:
+            green = 250;
+            blue = 255;
+            break;
+        case 2:
+            green = 255;
+            break;
+        case 3:
+            blue = 255;
+            break;
+        case 4:
+            red = 250;
+            green = 255;
+            break;
+        case 5:
+            backgroundColorCount = 1;
+            break;
+    }
+    backgroundColorCount++;
     self.view.backgroundColor = [UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
     [circleLayer setStrokeColor:[[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1] CGColor]];
     scoreLable.textColor=[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
