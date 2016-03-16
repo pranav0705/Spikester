@@ -13,6 +13,7 @@
 
 @implementation ViewController
 @synthesize  sound,credit,shop;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIGraphicsBeginImageContext(self.view.frame.size);
