@@ -11,6 +11,9 @@
 		18601F921C980D610046F7AE /* abc.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F911C980D610046F7AE /* abc.png */; };
 		18601F941C9811540046F7AE /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F931C9811540046F7AE /* PlayButton.png */; };
 		18601F961C98124C0046F7AE /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18601F951C98124C0046F7AE /* 2.jpg */; };
+		18601FA31C9918B10046F7AE /* launch.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601FA21C9918B10046F7AE /* launch.png */; };
+		18601FAA1C9928C20046F7AE /* bearcat.gif in Resources */ = {isa = PBXBuildFile; fileRef = 18601FA91C9928C20046F7AE /* bearcat.gif */; };
+		18601FAC1C993B910046F7AE /* bearcat1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 18601FAB1C993B910046F7AE /* bearcat1.gif */; };
 		18A1BB621C9691CC0001AFD5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB611C9691CC0001AFD5 /* main.m */; };
 		18A1BB651C9691CC0001AFD5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB641C9691CC0001AFD5 /* AppDelegate.m */; };
 		18A1BB681C9691CC0001AFD5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB671C9691CC0001AFD5 /* ViewController.m */; };
@@ -18,9 +21,7 @@
 		18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */; };
 		18A1BB7B1C9691CC0001AFD5 /* p06_SpikesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB7A1C9691CC0001AFD5 /* p06_SpikesterTests.m */; };
 		18A1BB861C9691CC0001AFD5 /* p06_SpikesterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */; };
-		81FB6FB11C97D34200212C2E /* bearcat.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB01C97D34100212C2E /* bearcat.png */; };
 		81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB21C97E4CA00212C2E /* Main.storyboard */; };
-		81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB51C97E80000212C2E /* bearcat1.png */; };
 		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
 		DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC43428A1C97D1A500EE08B7 /* Spikes.m */; };
 		DC43428D1C97D51E00EE08B7 /* spike.png in Resources */ = {isa = PBXBuildFile; fileRef = DC43428C1C97D51E00EE08B7 /* spike.png */; };
@@ -48,6 +49,9 @@
 		18601F911C980D610046F7AE /* abc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abc.png; sourceTree = "<group>"; };
 		18601F931C9811540046F7AE /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
 		18601F951C98124C0046F7AE /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
+		18601FA21C9918B10046F7AE /* launch.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = launch.png; sourceTree = "<group>"; };
+		18601FA91C9928C20046F7AE /* bearcat.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bearcat.gif; sourceTree = "<group>"; };
+		18601FAB1C993B910046F7AE /* bearcat1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = bearcat1.gif; sourceTree = "<group>"; };
 		18A1BB5D1C9691CC0001AFD5 /* p06-Spikester.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "p06-Spikester.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A1BB611C9691CC0001AFD5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		18A1BB631C9691CC0001AFD5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -63,9 +67,7 @@
 		18A1BB811C9691CC0001AFD5 /* p06-SpikesterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "p06-SpikesterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = p06_SpikesterUITests.m; sourceTree = "<group>"; };
 		18A1BB871C9691CC0001AFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81FB6FB01C97D34100212C2E /* bearcat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat.png; sourceTree = "<group>"; };
 		81FB6FB31C97E4CA00212C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "p06-Spikester/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
-		81FB6FB51C97E80000212C2E /* bearcat1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bearcat1.png; sourceTree = "<group>"; };
 		DC4342861C97CCDA00EE08B7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		DC4342871C97CCDA00EE08B7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
 		DC4342891C97D1A500EE08B7 /* Spikes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
@@ -98,11 +100,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18601FA41C9927740046F7AE /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				18601FAB1C993B910046F7AE /* bearcat1.gif */,
+				18601FA91C9928C20046F7AE /* bearcat.gif */,
+				18601FA21C9918B10046F7AE /* launch.png */,
+				18601F951C98124C0046F7AE /* 2.jpg */,
+				18601F931C9811540046F7AE /* PlayButton.png */,
+				18601F911C980D610046F7AE /* abc.png */,
+				18601F8D1C97FD7C0046F7AE /* 1.jpg */,
+				DC43428C1C97D51E00EE08B7 /* spike.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		18A1BB541C9691CC0001AFD5 = {
 			isa = PBXGroup;
 			children = (
-				81FB6FB51C97E80000212C2E /* bearcat1.png */,
-				81FB6FB01C97D34100212C2E /* bearcat.png */,
 				18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */,
 				18A1BB791C9691CC0001AFD5 /* p06-SpikesterTests */,
 				18A1BB841C9691CC0001AFD5 /* p06-SpikesterUITests */,
@@ -123,11 +138,7 @@
 		18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */ = {
 			isa = PBXGroup;
 			children = (
-				18601F951C98124C0046F7AE /* 2.jpg */,
-				18601F931C9811540046F7AE /* PlayButton.png */,
-				18601F911C980D610046F7AE /* abc.png */,
-				18601F8D1C97FD7C0046F7AE /* 1.jpg */,
-				DC43428C1C97D51E00EE08B7 /* spike.png */,
+				18601FA41C9927740046F7AE /* Images */,
 				18A1BB631C9691CC0001AFD5 /* AppDelegate.h */,
 				18A1BB641C9691CC0001AFD5 /* AppDelegate.m */,
 				18A1BB661C9691CC0001AFD5 /* ViewController.h */,
@@ -277,10 +288,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81FB6FB61C97E80000212C2E /* bearcat1.png in Resources */,
-				81FB6FB11C97D34200212C2E /* bearcat.png in Resources */,
+				18601FA31C9918B10046F7AE /* launch.png in Resources */,
+				18601FAA1C9928C20046F7AE /* bearcat.gif in Resources */,
 				18601F961C98124C0046F7AE /* 2.jpg in Resources */,
 				DC43428D1C97D51E00EE08B7 /* spike.png in Resources */,
+				18601FAC1C993B910046F7AE /* bearcat1.gif in Resources */,
 				18601F921C980D610046F7AE /* abc.png in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,

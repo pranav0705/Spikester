@@ -28,10 +28,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
 @implementation GameViewController
-@synthesize bear,score;
+@synthesize bear,score,bearcatview;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
 @synthesize timer;
-
+CAShapeLayer *circleLayer;
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
@@ -51,7 +51,14 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     //[bear setFrame:CGRectMake(screenWidth/2, screenHeight/2, 20, 20)];
 	
     //setting bear image
-    [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
+    //self.bearcatview = [[UIView alloc] initWithFrame:CGRectMake(screenWidth/2,screenHeight/2,50,50)];
+    //self.bearcatview.backgroundColor = [UIColor blueColor];
+    
+    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
+    bear.image=[UIImage imageNamed:@"bearcat.gif"];
+    [self.view addSubview: bear];
+
+    //[bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
 	
     //score
     self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
@@ -60,7 +67,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     self.score.backgroundColor = [UIColor blueColor];
 	
     //creating circle
-    CAShapeLayer *circleLayer = [CAShapeLayer layer];
+    circleLayer = [CAShapeLayer layer];
     [circleLayer setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 50, screenHeight/2 - 50, 100, 100)] CGPath]];
     
     [[self.view layer] addSublayer:circleLayer];
@@ -79,7 +86,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     lbl1.text= @"0";
     
     //timer
-    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+    BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.06 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
     
     collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(Coll) userInfo:nil repeats:YES];
 }
@@ -173,7 +180,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         NSLog(@"coords: %f",bear.center.x);
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-        [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
+        [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
         
        
         
@@ -185,11 +192,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
         scr_counter++;
         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
-        [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
-        
-        
-        
-        
+        [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
         [self randomSpikes];
         
     }

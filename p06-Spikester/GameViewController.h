@@ -13,6 +13,8 @@
 @interface GameViewController : UIViewController
 @property (strong, nonatomic) IBOutlet UIImageView *bear;
 @property (strong, nonatomic) IBOutlet UIView *score;
+@property (strong, nonatomic) IBOutlet UIButton *goHome;
+@property (strong, nonatomic) IBOutlet UIImageView *bearcatview;
 
 @property (nonatomic, strong) NSMutableArray * upspikes;
 @property (nonatomic, strong) NSMutableArray * downspikes;
