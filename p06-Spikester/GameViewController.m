@@ -36,10 +36,33 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 UIImageView *fishView;
 UIImageView *fishView1;
 
+- (void) jumpSoundPlay
+{
+    AudioServicesPlaySystemSound(jumpSound);
+}
+
+- (void) wallTouchSoundPlay
+{
+    AudioServicesPlaySystemSound(walltouchSound);
+}
+
+- (void) gameOverSoundPlay
+{
+    AudioServicesPlaySystemSound(gameoverSound);
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
 	
+    NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
+    NSURL *touchUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"touch" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)touchUrl,&walltouchSound);
+    NSURL *gameOverUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"wav"]];
+    AudioServicesCreateSystemSoundID((__bridge CFURLRef)gameOverUrl,&gameoverSound);
+    
     upspikes = [NSMutableArray array];
     downspikes = [NSMutableArray array];
     leftspikes = [NSMutableArray array];
@@ -85,9 +108,6 @@ UIImageView *fishView1;
     [self.view addSubview:lbl1];
     lbl1.text= @"0";
     
-    
-    
-    
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.07 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
     
@@ -101,19 +121,19 @@ UIImageView *fishView1;
 
 -(void)Coll{
 	
-	NSUInteger arraySizef = [fish count];
-	//NSLog(@"count :- %lu",(unsigned long)arraySize);
-	for(int j=0; j<arraySizef; j++){
-		//for(UIImageView *image in downspikes) {
-		UIImageView *x =[fish objectAtIndex:j];
-		if (CGRectIntersectsRect(bear.frame, x.frame))
-		{
-		//	NSLog(@"fish Count4: %d",fishCnt);
-			fishCnt=1;
-		//	NSLog(@"fish Count5: %d",fishCnt);
-			[self addFish];
-		}
-	}
+//	NSUInteger arraySizef = [fish count];
+//	//NSLog(@"count :- %lu",(unsigned long)arraySize);
+//	for(int j=0; j<arraySizef; j++){
+//		//for(UIImageView *image in downspikes) {
+//		UIImageView *x =[fish objectAtIndex:j];
+//		if (CGRectIntersectsRect(bear.frame, x.frame))
+//		{
+//		//	NSLog(@"fish Count4: %d",fishCnt);
+//			fishCnt=1;
+//		//	NSLog(@"fish Count5: %d",fishCnt);
+//			[self addFish];
+//		}
+//	}
 
 	
     //code for intersection
@@ -236,15 +256,9 @@ UIImageView *fishView1;
 
 -(void)BirdMoving{
     
-	
-    //HIDE LEFT AND RIGHT SPIKES
-    
-    //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
-    
+	//LEFT AND RIGHT WALL ON TOUCH
     if ((bear.center.x - 40) < 10) {
-        //  bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
         flg = 1;
-      //  NSLog(@"coords: %f",bear.center.x);
         scr_counter++;
         
         //animation for text changing
@@ -254,19 +268,20 @@ UIImageView *fishView1;
         animation.duration = 0.75;
         [lbl1.layer addAnimation:animation forKey:@"kCATransitionFade"];
         
-        // This will fade:
-         [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
+        //This will fade:
+        [lbl1 setText:[NSString stringWithFormat:@"%d",scr_counter]];
        
         [bear setImage:[UIImage imageNamed:@"bearcat1.png"]];
-        
-       
-        
+
         [self randomSpikes];
+        
+        //play touch wall sound
+        [self wallTouchSoundPlay];
     }
     if ((bear.center.x + 40) >= screenWidth)
     {
         flg = 0;
-        // bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
+        //bear.center = CGPointMake(bear.center.x - 10, bear.center.y - BearFlight);
         scr_counter++;
         //animation for text changing
         CATransition *animation = [CATransition animation];
@@ -280,16 +295,14 @@ UIImageView *fishView1;
         
         [bear setImage:[UIImage imageNamed:@"bearcat.png"]];
         
-        
-        
-        
         [self randomSpikes];
-        
+        //play touch wall sound
+        [self wallTouchSoundPlay];
     }
+    
     
     if(flg == 1)
     {
-        
         bear.center = CGPointMake(bear.center.x + 10, bear.center.y - BearFlight);
     }
     else
@@ -301,6 +314,7 @@ UIImageView *fishView1;
 	
 }
 
+// SPIKES GENERATION FOR UP DOWN LEFT AND RIGHT
 - (void) generatingSpikes {
 	CGRect screenBound = [[UIScreen mainScreen] bounds];
 	CGSize screenSize = screenBound.size;
@@ -309,8 +323,6 @@ UIImageView *fishView1;
 	
 	int widthspikes = screenWidth/8;
     
-    
-	
 	//DOWN SPIKES
 	int x=0;
 	int y=screenHeight - widthspikes;
@@ -440,20 +452,18 @@ UIImageView *fishView1;
 	}
     
     
-    //hiding left side spikes
+    //hiding left/right side spikes
     for(int k=0; k<11; k++)
     {
         
         //hiding right side spikes
-        
         UILabel *x =[rightspikes objectAtIndex:k];
         x.hidden = YES;
+        //hiding left side spikes
         x =[leftspikes objectAtIndex:k];
         x.hidden = YES;
     }
 }
-
-//-(void)timerEvent:(id)sender
 
 -(void)randomSpikes
 {
@@ -514,25 +524,12 @@ UIImageView *fishView1;
             [self hideSpikesAnimate:x];
         }
         checkSide = 0;
-        
     }
-
 }
 
+// HIDE SPIKES WITH ANIMATION
 - (void)hideSpikesAnimate:(UIImageView *)imageView
 {
-    /*
-    imageView.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
-    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
-        // Animate the alpha value of your imageView from 1.0 to 0.0 here
-        imageView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
-        imageView.hidden = YES;
-    }]; */
-    
-    
     CATransition *transition = [CATransition animation];
     transition.duration = 1.0f;
     transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -542,6 +539,17 @@ UIImageView *fishView1;
     imageView.hidden = YES;
 }
 
+// SHOW SPIKES WITH ANIMATION
+- (void)showSpikesAnimate:(UIImageView *)imageView
+{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 1.0f;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionFade;
+    
+    [imageView.layer addAnimation:transition forKey:nil];
+    imageView.hidden = NO;
+}
 
 //code to rotate image on game over
 -(void)rotateImage{
@@ -558,35 +566,16 @@ UIImageView *fishView1;
     
     [UIView commitAnimations];
     
+    [self gameOverSoundPlay];
+    
     // The rotation code above will rotate your object to the angle and not rotate beyond that.
     // If you want to rotate the object again but continue from the current angle, use this instead:
     // player.transform = CGAffineTransformRotate(player.transform, degreesToRadians(angle));
 }
 
-- (void)showSpikesAnimate:(UIImageView *)imageView
-{
-  /*  imageView.alpha = 1.0f;
-    // Then fades it away after 2 seconds (the cross-fade animation will take 0.5s)
-    [UIView animateWithDuration:0.5 delay:2.0 options:0 animations:^{
-        // Animate the alpha value of your imageView from 1.0 to 0.0 here
-        imageView.alpha = 0.0f;
-    } completion:^(BOOL finished) {
-        // Once the animation is completed and the alpha has gone to 0.0, hide the view for good
-        imageView.hidden = NO;
-    }]; */
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 1.0f;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionFade;
-    
-    [imageView.layer addAnimation:transition forKey:nil];
-    imageView.hidden = NO;
-
-}
-
-
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    //play jump sound on touch
+    [self jumpSoundPlay];
     
     BearFlight = 20;
 }
