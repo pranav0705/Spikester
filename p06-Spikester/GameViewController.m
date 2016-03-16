@@ -16,7 +16,7 @@
 UIDynamicAnimator* _animator;
 UIGravityBehavior* _gravity;
 UICollisionBehavior* _collision; //setting boundaries of falling
-NSTimer *BirdMovement, *collison, *trophyCollison;
+NSTimer *bearcatMovement, *spikesCollison, *trophyCollison;
 CGRect screenRect;
 CGFloat screenWidth;
 UILabel *scoreLable;
@@ -94,19 +94,17 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [scoreLable setFont:[UIFont fontWithName:@"Courier-Bold" size:65]];
     [self.view addSubview:scoreLable];
     scoreLable.text= @"00";
-
-    //Add tropy random generation
-	[self addTrophy];
-	
-    //Generate spikes around
-	[self generatingSpikes];
     
     //Bearcat Generation
     bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
     bear.image=[UIImage imageNamed:@"bearcat.gif"];
     [self.view addSubview: bear];
     
-   
+    [self bearcatAnimation];
+    
+    
+    //Generate spikes around
+    [self generatingSpikes];
     
 }
 
@@ -114,14 +112,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-- (IBAction)GameOver:(id)sender {
-    [BirdMovement invalidate];
-    [collison invalidate];
-    [trophyCollison invalidate];
-    touchCount = 0;
-    //[self viewDidLoad];
-    //[self.view setNeedsDisplay];
 }
 
 -(void)spikesCollision{
@@ -135,10 +125,13 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         {
             
            // [bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
-            [BirdMovement invalidate];
-            [collison invalidate];
+            [bearcatMovement invalidate];
+            [spikesCollison invalidate];
             [self rotateImage];
             _goHome.hidden=NO;
+           
+            [self.view bringSubviewToFront:_goHome];
+            
         }
     }
     
@@ -151,8 +144,8 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         if (CGRectIntersectsRect(bear.frame, x.frame))
         {
             //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
-            [BirdMovement invalidate];
-            [collison invalidate];
+            [bearcatMovement invalidate];
+            [spikesCollison invalidate];
             [self rotateImage];
         }
     }
@@ -170,8 +163,8 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             if (CGRectIntersectsRect(bear.frame, x.frame))
             {
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
-                [BirdMovement invalidate];
-                [collison invalidate];
+                [bearcatMovement invalidate];
+                [spikesCollison invalidate];
                 [self rotateImage];
             }
         }
@@ -190,8 +183,8 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             if (CGRectIntersectsRect(bear.frame, x.frame))
             {
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
-                [BirdMovement invalidate];
-                [collison invalidate];
+                [bearcatMovement invalidate];
+                [spikesCollison invalidate];
                 [self rotateImage];
             }
         }
@@ -229,7 +222,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 	
 }
 
--(void)BirdMoving{
+-(void)bearcatMovement{
     
 	//LEFT AND RIGHT WALL ON TOUCH
     if ((bear.center.x - 22) < 10) {
@@ -249,6 +242,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         
         [self randomSpikes];
         [self wallTouchSoundPlay];
+        
+        if(scr_counter%5 == 0)
+        {
+            [self colorBackgroundChange];
+        }
     }
     if ((bear.center.x + 22) >= screenWidth)
     {
@@ -268,6 +266,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         [self randomSpikes];
         //play touch wall sound
         [self wallTouchSoundPlay];
+        
+        if(scr_counter%5 == 0)
+        {
+            [self colorBackgroundChange];
+        }
     }
     
     
@@ -541,10 +544,13 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     if(touchCount == 0)
     {
+        [bear.layer removeAllAnimations];
+        //Add tropy random generation
+        [self addTrophy];
         //timer
-        BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
+        bearcatMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(bearcatMovement) userInfo:nil repeats:YES];
         
-        collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(spikesCollision) userInfo:nil repeats:YES];
+        spikesCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(spikesCollision) userInfo:nil repeats:YES];
         
         trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
     }
@@ -562,6 +568,19 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     return YES;
 }
 
+//JUMPING BEARCAT
+- (void)bearcatAnimation {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = 0.4;
+    animation.repeatCount = 1000;
+    animation.fromValue = [NSValue valueWithCGPoint:bear.center];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(bear.center.x, bear.center.y-30)];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.autoreverses = YES;
+    animation.removedOnCompletion = NO;
+    [bear.layer addAnimation:animation forKey:@"position"];
+}
+
 //JUMPING TROPHY
 - (void)trophyAnimation {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
@@ -574,4 +593,29 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     animation.removedOnCompletion = NO;
     [trophy.layer addAnimation:animation forKey:@"position"];
 }
+
+//GAME OVER
+- (IBAction)GameOver:(id)sender {
+    [bearcatMovement invalidate];
+    [spikesCollison invalidate];
+    [trophyCollison invalidate];
+    touchCount = 0;
+}
+
+- (void)colorBackgroundChange{
+    int red = 210, green = 210, blue = 210;
+    if(scr_counter == 5)
+    {
+        red = arc4random()% 100;
+    }else if(scr_counter == 10){
+        green = arc4random()% 100;
+    }else if(scr_counter == 15){
+        blue = arc4random()% 100;
+    }
+    
+    self.view.backgroundColor = [UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
+    [circleLayer setStrokeColor:[[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1] CGColor]];
+    scoreLable.textColor=[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
+}
+
 @end

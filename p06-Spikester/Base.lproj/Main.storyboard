@@ -65,11 +65,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-s5-uMR">
-                                <rect key="frame" x="175" y="267" width="251" height="66"/>
-                                <color key="backgroundColor" red="0.13725490200000001" green="0.31764705879999999" blue="0.74117647060000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <rect key="frame" x="80" y="267" width="251" height="66"/>
+                                <color key="backgroundColor" red="0.2469503622" green="0.51093750000000004" blue="0.20094119830000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="HOME">
-                                    <color key="titleColor" red="0.48767685529999999" green="0.74526837170000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="REPLAY">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
                                     <action selector="GameOver:" destination="GEF-1K-xUE" eventType="touchUpInside" id="nsd-wj-x7g"/>
