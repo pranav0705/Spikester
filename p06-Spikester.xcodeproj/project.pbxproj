@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		108D4FFA1C98D91700AC581D /* fish.png in Resources */ = {isa = PBXBuildFile; fileRef = 108D4FF91C98D91700AC581D /* fish.png */; };
 		18601F8E1C97FD7C0046F7AE /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 18601F8D1C97FD7C0046F7AE /* 1.jpg */; };
 		18601F921C980D610046F7AE /* abc.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F911C980D610046F7AE /* abc.png */; };
 		18601F941C9811540046F7AE /* PlayButton.png in Resources */ = {isa = PBXBuildFile; fileRef = 18601F931C9811540046F7AE /* PlayButton.png */; };
@@ -27,8 +26,11 @@
 		18A1BB861C9691CC0001AFD5 /* p06_SpikesterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */; };
 		81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB21C97E4CA00212C2E /* Main.storyboard */; };
 		DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4342871C97CCDA00EE08B7 /* GameViewController.m */; };
-		DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */ = {isa = PBXBuildFile; fileRef = DC43428A1C97D1A500EE08B7 /* Spikes.m */; };
 		DC43428D1C97D51E00EE08B7 /* spike.png in Resources */ = {isa = PBXBuildFile; fileRef = DC43428C1C97D51E00EE08B7 /* spike.png */; };
+		DC4342951C9920F900EE08B7 /* jump.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342941C9920F900EE08B7 /* jump.wav */; };
+		DC4342981C9926CA00EE08B7 /* gameover.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342961C9926CA00EE08B7 /* gameover.wav */; };
+		DC4342991C9926CA00EE08B7 /* touch.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC4342971C9926CA00EE08B7 /* touch.wav */; };
+		DC43429D1C99514B00EE08B7 /* trophy.png in Resources */ = {isa = PBXBuildFile; fileRef = DC43429C1C99514B00EE08B7 /* trophy.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,7 +51,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		108D4FF91C98D91700AC581D /* fish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fish.png; sourceTree = "<group>"; };
 		18601F8D1C97FD7C0046F7AE /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		18601F911C980D610046F7AE /* abc.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = abc.png; sourceTree = "<group>"; };
 		18601F931C9811540046F7AE /* PlayButton.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayButton.png; sourceTree = "<group>"; };
@@ -81,9 +82,11 @@
 		81FB6FB31C97E4CA00212C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "p06-Spikester/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
 		DC4342861C97CCDA00EE08B7 /* GameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GameViewController.h; sourceTree = "<group>"; };
 		DC4342871C97CCDA00EE08B7 /* GameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GameViewController.m; sourceTree = "<group>"; };
-		DC4342891C97D1A500EE08B7 /* Spikes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Spikes.h; sourceTree = "<group>"; };
-		DC43428A1C97D1A500EE08B7 /* Spikes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Spikes.m; sourceTree = "<group>"; };
 		DC43428C1C97D51E00EE08B7 /* spike.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spike.png; sourceTree = "<group>"; };
+		DC4342941C9920F900EE08B7 /* jump.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = jump.wav; sourceTree = "<group>"; };
+		DC4342961C9926CA00EE08B7 /* gameover.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = gameover.wav; sourceTree = "<group>"; };
+		DC4342971C9926CA00EE08B7 /* touch.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = touch.wav; sourceTree = "<group>"; };
+		DC43429C1C99514B00EE08B7 /* trophy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = trophy.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,10 +132,13 @@
 		18A1BB541C9691CC0001AFD5 = {
 			isa = PBXGroup;
 			children = (
-				188E48EA1C994CA400C477FB /* gameover.wav */,
-				188E48EB1C994CA400C477FB /* jump.wav */,
-				188E48EC1C994CA400C477FB /* touch.wav */,
-				108D4FF91C98D91700AC581D /* fish.png */,
+				81FB6FB51C97E80000212C2E /* bearcat1.png */,
+				81FB6FB01C97D34100212C2E /* bearcat.png */,
+                188E48EA1C994CA400C477FB /* gameover.wav */,
+                188E48EB1C994CA400C477FB /* jump.wav */,
+                188E48EC1C994CA400C477FB /* touch.wav */,
+                108D4FF91C98D91700AC581D /* fish.png */,
+
 				18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */,
 				18A1BB791C9691CC0001AFD5 /* p06-SpikesterTests */,
 				18A1BB841C9691CC0001AFD5 /* p06-SpikesterUITests */,
@@ -153,10 +159,16 @@
 		18A1BB5F1C9691CC0001AFD5 /* p06-Spikester */ = {
 			isa = PBXGroup;
 			children = (
-				188E48E41C994C2700C477FB /* gameover.wav */,
-				188E48E51C994C2700C477FB /* jump.wav */,
-				188E48E61C994C2700C477FB /* touch.wav */,
-				18601FA41C9927740046F7AE /* Images */,
+				DC43429C1C99514B00EE08B7 /* trophy.png */,
+				DC4342961C9926CA00EE08B7 /* gameover.wav */,
+				DC4342971C9926CA00EE08B7 /* touch.wav */,
+				DC4342941C9920F900EE08B7 /* jump.wav */,
+				18601F951C98124C0046F7AE /* 2.jpg */,
+				18601F931C9811540046F7AE /* PlayButton.png */,
+				18601F911C980D610046F7AE /* abc.png */,
+				18601F8D1C97FD7C0046F7AE /* 1.jpg */,
+				DC43428C1C97D51E00EE08B7 /* spike.png */,
+                18601FA41C9927740046F7AE /* Images */,
 				18A1BB631C9691CC0001AFD5 /* AppDelegate.h */,
 				18A1BB641C9691CC0001AFD5 /* AppDelegate.m */,
 				18A1BB661C9691CC0001AFD5 /* ViewController.h */,
@@ -168,8 +180,6 @@
 				18A1BB601C9691CC0001AFD5 /* Supporting Files */,
 				DC4342861C97CCDA00EE08B7 /* GameViewController.h */,
 				DC4342871C97CCDA00EE08B7 /* GameViewController.m */,
-				DC4342891C97D1A500EE08B7 /* Spikes.h */,
-				DC43428A1C97D1A500EE08B7 /* Spikes.m */,
 			);
 			path = "p06-Spikester";
 			sourceTree = "<group>";
@@ -319,8 +329,8 @@
 				18A1BB6D1C9691CC0001AFD5 /* Assets.xcassets in Resources */,
 				18601F941C9811540046F7AE /* PlayButton.png in Resources */,
 				81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */,
-				108D4FFA1C98D91700AC581D /* fish.png in Resources */,
 				18601F8E1C97FD7C0046F7AE /* 1.jpg in Resources */,
+				DC43429D1C99514B00EE08B7 /* trophy.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,7 +357,6 @@
 			files = (
 				DC4342881C97CCDA00EE08B7 /* GameViewController.m in Sources */,
 				18A1BB681C9691CC0001AFD5 /* ViewController.m in Sources */,
-				DC43428B1C97D1A500EE08B7 /* Spikes.m in Sources */,
 				18A1BB651C9691CC0001AFD5 /* AppDelegate.m in Sources */,
 				18A1BB621C9691CC0001AFD5 /* main.m in Sources */,
 			);

@@ -16,7 +16,7 @@
 UIDynamicAnimator* _animator;
 UIGravityBehavior* _gravity;
 UICollisionBehavior* _collision; //setting boundaries of falling
-NSTimer *BirdMovement,*collison;
+NSTimer *BirdMovement, *collison, *trophyCollison;
 CGRect screenRect;
 CGFloat screenWidth;
 UILabel *lbl1;
@@ -52,9 +52,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-   
-    
 	
     NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
@@ -119,6 +116,10 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.06 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
     
     collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(Coll) userInfo:nil repeats:YES];
+    
+    trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
+    
+    //[self trophyCollison];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -130,7 +131,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 	
     //code for intersection
     NSUInteger arraySize = [downspikes count];
-    //NSLog(@"count :- %lu",(unsigned long)arraySize);
     for(int j=0; j<arraySize; j++){
         //for(UIImageView *image in downspikes) {
         UIImageView *x =[downspikes objectAtIndex:j];
@@ -169,13 +169,12 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         
         if(x.hidden == NO)
         {
-        if (CGRectIntersectsRect(bear.frame, x.frame))
-            
-        {
+            if (CGRectIntersectsRect(bear.frame, x.frame))
+            {
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
                 [collison invalidate];
-            [self rotateImage];
+                [self rotateImage];
             }
         }
     }
@@ -191,7 +190,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         if(x.hidden == NO)
         {
             if (CGRectIntersectsRect(bear.frame, x.frame))
-                
             {
                 //[bear setFrame:CGRectMake(bear.center.x - 23, bear.center.y - 35, 50, 50)];
                 [BirdMovement invalidate];
@@ -200,17 +198,19 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             }
         }
     }
-    
+}
+
+
+-(void)trophyCollison
+{
     if (CGRectIntersectsRect(bear.frame, trophy.frame))
     {
         trophy.hidden=true;
         [self addTrophy];
     }
-    
 }
 
 -(void)addTrophy{
-
 
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
@@ -223,7 +223,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 		
 		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue, 25, 25)];
-		trophy.image = [UIImage imageNamed:@"fish.png"];
+		trophy.image = [UIImage imageNamed:@"trophy.png"];
 
 		//add the view to the main view
 		[self.view addSubview:trophy];
