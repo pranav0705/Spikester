@@ -29,12 +29,10 @@ int touchCount =0;
 CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
-
 @implementation GameViewController
 @synthesize bear,score,trophy;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
 @synthesize timer;
-
 
 - (void) jumpSoundPlay
 {
