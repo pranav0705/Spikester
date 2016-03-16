@@ -106,7 +106,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     //timer
     BirdMovement = [NSTimer scheduledTimerWithTimeInterval:0.09 target:self selector:@selector(BirdMoving) userInfo:nil repeats:YES];
     
-    collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(Coll) userInfo:nil repeats:YES];
+    collison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(spikesCollision) userInfo:nil repeats:YES];
     
     trophyCollison = [NSTimer scheduledTimerWithTimeInterval:0.0001 target:self selector:@selector(trophyCollison) userInfo:nil repeats:YES];
     
@@ -118,7 +118,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     // Dispose of any resources that can be recreated.
 }
 
--(void)Coll{
+-(void)spikesCollision{
 	
     //code for intersection
     NSUInteger arraySize = [downspikes count];
@@ -209,11 +209,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     CGFloat screenHeight = screenSize.height;
     
     //random trophy generation for bearcat
-    int xValue = (arc4random() % (int) screenWidth);
-    int yValue = (arc4random() % (int) screenHeight);
+    int xValue = (arc4random() % (int) (screenWidth-200));
+    int yValue = (arc4random() % (int) (screenHeight-200));
 
 		
-		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue, 25, 25)];
+		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue + 60, yValue + 60, 25, 25)];
 		trophy.image = [UIImage imageNamed:@"trophy.png"];
 
 		//add the view to the main view
