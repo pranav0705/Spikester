@@ -23,18 +23,16 @@ UILabel *lbl1;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int BearFlight;
-int fishCnt=0;
 
 
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 
 @implementation GameViewController
-@synthesize bear,score;
+@synthesize bear,score,trophy;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
-@synthesize timer,fish;
-UIImageView *fishView;
-UIImageView *fishView1;
+@synthesize timer;
+
 
 - (void) jumpSoundPlay
 {
@@ -51,10 +49,12 @@ UIImageView *fishView1;
     AudioServicesPlaySystemSound(gameoverSound);
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    
+   
+    
 	
     NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
@@ -67,8 +67,9 @@ UIImageView *fishView1;
     downspikes = [NSMutableArray array];
     leftspikes = [NSMutableArray array];
     rightspikes = [NSMutableArray array];
-	fish = [NSMutableArray array];
-	[self addFish];
+
+    //Add tropy random generation
+	[self addTrophy];
 	
 	[self generatingSpikes];
     //getting screen sizes
@@ -120,21 +121,6 @@ UIImageView *fishView1;
 }
 
 -(void)Coll{
-	
-//	NSUInteger arraySizef = [fish count];
-//	//NSLog(@"count :- %lu",(unsigned long)arraySize);
-//	for(int j=0; j<arraySizef; j++){
-//		//for(UIImageView *image in downspikes) {
-//		UIImageView *x =[fish objectAtIndex:j];
-//		if (CGRectIntersectsRect(bear.frame, x.frame))
-//		{
-//		//	NSLog(@"fish Count4: %d",fishCnt);
-//			fishCnt=1;
-//		//	NSLog(@"fish Count5: %d",fishCnt);
-//			[self addFish];
-//		}
-//	}
-
 	
     //code for intersection
     NSUInteger arraySize = [downspikes count];
@@ -209,48 +195,33 @@ UIImageView *fishView1;
         }
     }
     
+    if (CGRectIntersectsRect(bear.frame, trophy.frame))
+    {
+        trophy.hidden=true;
+        [self addTrophy];
+    }
+    
 }
 
--(void)addFish{
+-(void)addTrophy{
 
-	//Add Fish
-	int x=20;
-	int y=350;
 
-	NSLog(@"fish Count: %d",fishCnt);
-	if(fishCnt==0)
-	{
-		fishView1.hidden=YES;
-		fishView.hidden=NO;
-		fishView = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, 20, 20)];
-		fishView.image = [UIImage imageNamed:@"fish.png"];
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
+    CGFloat screenWidth = screenSize.width;
+    CGFloat screenHeight = screenSize.height;
+    
+    //random trophy generation for bearcat
+    int xValue = (arc4random() % (int) screenWidth);
+    int yValue = (arc4random() % (int) screenHeight);
+
 		
-		NSLog(@"fish Count0: %d",fishCnt);
-		fishView.hidden=NO;
+		trophy = [[UIImageView alloc] initWithFrame:CGRectMake(xValue, yValue, 25, 25)];
+		trophy.image = [UIImage imageNamed:@"fish.png"];
+
 		//add the view to the main view
-		[self.view addSubview:fishView];
-		
-		//add spikes to array
-		[fish addObject:fishView];
-
-	}
-	else if(fishCnt==1)
-	{
-		fishCnt=0;
-		fishView1.hidden=NO;
-		fishView.hidden=YES;
-		x=350;
-		y=450;
-		UIImageView *fishView1 = [[UIImageView alloc] initWithFrame:CGRectMake(x, y, 20, 20)];
-		fishView1.image = [UIImage imageNamed:@"fish.png"];
-		
-		NSLog(@"fish Count1: %d",fishCnt);
-		[self.view addSubview:fishView1];
-		
-		//add spikes to array
-		[fish addObject:fishView1];
-
-	}
+		[self.view addSubview:trophy];
+	
 }
 
 
