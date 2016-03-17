@@ -77,10 +77,6 @@ int p;
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
     
-    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
-    bear.image=[UIImage imageNamed:@"bearcat.gif"];
-    [self.view addSubview: bear];
-    
     paw = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
     paw2 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
     paw3 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
@@ -169,6 +165,11 @@ int p;
     circleLayer.hidden=YES;
     scoreLable.hidden=YES;
     [self.view bringSubviewToFront:_gameOver];
+    
+    //rounded curves
+    [_goHome.layer setCornerRadius:8];
+    [[_goHome layer] setMasksToBounds:YES];
+    
     trophyImageView1.image=[UIImage imageNamed:@"trophy.png"];
     trofyCount.text=[NSString stringWithFormat:@"%d",trophyCount];
     FinalScore.text=[NSString stringWithFormat:@"%d",scr_counter];
