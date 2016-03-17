@@ -7,7 +7,6 @@
 //
 
 #import "GameViewController.h"
-#import "Spikes.h"
 
 @interface GameViewController ()
 
@@ -21,20 +20,21 @@ CGRect screenRect;
 CGFloat screenWidth;
 UILabel *scoreLable;
 CGFloat screenHeight;
-int flg = 0,scr_counter = 0, p =0;
+int flg = 0,scr_counter = 0;
+int backgroundColorCount = 1;
 int BearFlight;
 UIImageView *paw,*paw2,*paw3;
 int touchCount =0;
-
+int trophyCount=0;
 CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
-
+int p;
 
 @implementation GameViewController
 @synthesize bear,score,trophy;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
 @synthesize timer;
-
+@synthesize FinalScore,trofyCount,trophyImageView,trophyImageView1;
 
 - (void) jumpSoundPlay
 {
@@ -53,6 +53,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    trophyCount=0;
     // Do any additional setup after loading the view, typically from a nib.
     //BACKGROUND COLOR
     self.view.backgroundColor = [UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1];
@@ -143,7 +144,16 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)GameOverView{
+    _gameOver.hidden=NO;
+    trophy.hidden=YES;
+    circleLayer.hidden=YES;
+    scoreLable.hidden=YES;
+    [self.view bringSubviewToFront:_gameOver];
+    trophyImageView1.image=[UIImage imageNamed:@"trophy.png"];
+    trofyCount.text=[NSString stringWithFormat:@"%d",trophyCount];
+    FinalScore.text=[NSString stringWithFormat:@"%d",scr_counter];
+}
 -(void)spikesCollision{
 	
     //code for intersection
@@ -158,10 +168,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             [bearcatMovement invalidate];
             [spikesCollison invalidate];
             [self rotateImage];
-            _goHome.hidden=NO;
-           
-            [self.view bringSubviewToFront:_goHome];
-            
+            [self GameOverView];
         }
     }
     
@@ -177,6 +184,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             [bearcatMovement invalidate];
             [spikesCollison invalidate];
             [self rotateImage];
+            [self GameOverView];
         }
     }
     
@@ -196,6 +204,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                 [bearcatMovement invalidate];
                 [spikesCollison invalidate];
                 [self rotateImage];
+                [self GameOverView];
             }
         }
     }
@@ -216,6 +225,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                 [bearcatMovement invalidate];
                 [spikesCollison invalidate];
                 [self rotateImage];
+                [self GameOverView];
             }
         }
     }
@@ -227,6 +237,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     if (CGRectIntersectsRect(bear.frame, trophy.frame))
     {
         trophy.hidden=true;
+        trophyCount+=1;
         [self addTrophy];
     }
 }
@@ -273,7 +284,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         [self randomSpikes];
         [self wallTouchSoundPlay];
         
-        if(scr_counter%5 == 0)
+        if(scr_counter%2 == 0)
         {
             [self colorBackgroundChange];
         }
@@ -298,7 +309,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         //play touch wall sound
         [self wallTouchSoundPlay];
         
-        if(scr_counter%5 == 0)
+        if(scr_counter%2 == 0)
         {
             [self colorBackgroundChange];
         }
@@ -671,19 +682,34 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [spikesCollison invalidate];
     [trophyCollison invalidate];
     touchCount = 0;
+    scr_counter=0;
+    trophyCount=0;
+
 }
 
 - (void)colorBackgroundChange{
     int red = 210, green = 210, blue = 210;
-    if(scr_counter == 5)
-    {
-        red = arc4random()% 100;
-    }else if(scr_counter == 10){
-        green = arc4random()% 100;
-    }else if(scr_counter == 15){
-        blue = arc4random()% 100;
-    }
     
+    switch (backgroundColorCount) {
+        case 1:
+            green = 250;
+            blue = 255;
+            break;
+        case 2:
+            green = 255;
+            break;
+        case 3:
+            blue = 255;
+            break;
+        case 4:
+            red = 250;
+            green = 255;
+            break;
+        case 5:
+            backgroundColorCount = 1;
+            break;
+    }
+    backgroundColorCount++;
     self.view.backgroundColor = [UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
     [circleLayer setStrokeColor:[[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1] CGColor]];
     scoreLable.textColor=[UIColor colorWithRed:(red/255.0) green:(green/255.0) blue:(blue/255.0) alpha:1];
