@@ -15,10 +15,10 @@
 UIDynamicAnimator* _animator;
 UIGravityBehavior* _gravity;
 UICollisionBehavior* _collision; //setting boundaries of falling
-NSTimer *bearcatMovement, *spikesCollison, *trophyCollison;
+NSTimer *bearcatMovement, *spikesCollison, *trophyCollison,*blink;
 CGRect screenRect;
 CGFloat screenWidth;
-UILabel *scoreLable;
+UILabel *scoreLable,*begin;
 CGFloat screenHeight;
 int flg = 0,scr_counter = 0;
 int backgroundColorCount = 1;
@@ -131,12 +131,31 @@ int p;
     bear.image=[UIImage imageNamed:@"bearcat.gif"];
     [self.view addSubview: bear];
     
+    scoreLable.hidden = YES;
+    
+    
+    //being label
+    begin = [[UILabel alloc] init];
+    [begin setFrame:CGRectMake(screenWidth/8, screenHeight/2+ 130, screenWidth - screenWidth/8, 90)];
+    [begin setText:@"Tap to Begin"];
+    [begin setFont:[UIFont fontWithName:@"chalkduster" size:40]];
+    [begin setTextColor:[UIColor whiteColor]];
+    [self.view addSubview:begin];
+    
+    
+    blink = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(toggleLabelAlpha) userInfo:nil repeats:YES];
+    
     [self bearcatAnimation];
     
     
     //Generate spikes around
     [self generatingSpikes];
     
+}
+
+- (void)toggleLabelAlpha {
+    
+    [begin setHidden:(!begin.hidden)];
 }
 
 
@@ -577,7 +596,7 @@ int p;
     
     [UIView animateWithDuration:5.0f animations:^{
         //Move the image view to 100, 100 over 10 seconds.
-        bear.frame = CGRectMake(bear.center.x, screenHeight, bear.frame.size.width, bear.frame.size.height);
+        bear.frame = CGRectMake(bear.center.x, screenHeight - screenHeight/15, bear.frame.size.width, bear.frame.size.height);
     }];
     
     [self gameOverSoundPlay];
@@ -588,6 +607,9 @@ int p;
     
     if(touchCount == 0)
     {
+        begin.hidden = YES;
+        [blink invalidate];
+        scoreLable.hidden = NO;
         [bear.layer removeAllAnimations];
         //Add tropy random generation
         [self addTrophy];
