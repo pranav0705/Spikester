@@ -591,13 +591,13 @@ int p;
     rotationAnimation.toValue = [NSNumber numberWithFloat: 3.14 * 2.0 /* full rotation*/ * 5 * 0.1 ];
     rotationAnimation.duration = 0.2;
     rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = 10000;
+    rotationAnimation.repeatCount = 27;
     
     [bear.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     [UIView animateWithDuration:5.0f animations:^{
         //Move the image view to 100, 100 over 10 seconds.
-        bear.frame = CGRectMake(bear.center.x, screenHeight - screenHeight/15, bear.frame.size.width, bear.frame.size.height);
+        bear.frame = CGRectMake(bear.center.x, screenHeight - screenHeight/15 - screenHeight/15, bear.frame.size.width, bear.frame.size.height);
     }];
     
     [self gameOverSoundPlay];
@@ -707,7 +707,9 @@ int p;
     touchCount = 0;
     scr_counter=0;
     trophyCount=0;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    flg = 0;
+   [self dismissViewControllerAnimated:YES completion:nil];
+
 }
 
 - (void)colorBackgroundChange{
