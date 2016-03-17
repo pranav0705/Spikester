@@ -11,8 +11,6 @@
 
 @end
 
-
-
 @implementation ViewController
 @synthesize bear;
 CAShapeLayer *circleLayer1;
@@ -70,7 +68,5 @@ CAShapeLayer *circleLayer1;
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-
 
 @end

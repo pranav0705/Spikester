@@ -77,10 +77,6 @@ int p;
     screenWidth = screenRect.size.width;
     screenHeight = screenRect.size.height;
     
-    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
-    bear.image=[UIImage imageNamed:@"bearcat.gif"];
-    [self.view addSubview: bear];
-    
     paw = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
     paw2 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
     paw3 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
@@ -169,6 +165,11 @@ int p;
     circleLayer.hidden=YES;
     scoreLable.hidden=YES;
     [self.view bringSubviewToFront:_gameOver];
+    
+    //rounded curves
+    [_goHome.layer setCornerRadius:8];
+    [[_goHome layer] setMasksToBounds:YES];
+    
     trophyImageView1.image=[UIImage imageNamed:@"trophy.png"];
     trofyCount.text=[NSString stringWithFormat:@"%d",trophyCount];
     FinalScore.text=[NSString stringWithFormat:@"%d",scr_counter];
@@ -590,13 +591,13 @@ int p;
     rotationAnimation.toValue = [NSNumber numberWithFloat: 3.14 * 2.0 /* full rotation*/ * 5 * 0.1 ];
     rotationAnimation.duration = 0.2;
     rotationAnimation.cumulative = YES;
-    rotationAnimation.repeatCount = 10000;
+    rotationAnimation.repeatCount = 27;
     
     [bear.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
     [UIView animateWithDuration:5.0f animations:^{
         //Move the image view to 100, 100 over 10 seconds.
-        bear.frame = CGRectMake(bear.center.x, screenHeight - screenHeight/15, bear.frame.size.width, bear.frame.size.height);
+        bear.frame = CGRectMake(bear.center.x, screenHeight - screenHeight/15 - screenHeight/15, bear.frame.size.width, bear.frame.size.height);
     }];
     
     [self gameOverSoundPlay];
@@ -706,7 +707,8 @@ int p;
     touchCount = 0;
     scr_counter=0;
     trophyCount=0;
-    [self dismissViewControllerAnimated:YES completion:nil];
+    flg = 0;
+   [self dismissViewControllerAnimated:YES completion:nil];
 
 }
 

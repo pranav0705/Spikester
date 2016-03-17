@@ -77,13 +77,14 @@
                                         <size key="titleShadowOffset" width="2" height="0.0"/>
                                         <state key="normal" title="REPLAY">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <state key="selected">
                                             <color key="titleShadowColor" red="0.066666666669999999" green="0.08235294118" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="GameOver:" destination="GEF-1K-xUE" eventType="touchUpInside" id="nsd-wj-x7g"/>
-                                            <segue destination="BYZ-38-t0r" kind="presentation" id="ZWp-aO-05f"/>
+                                            <segue destination="BYZ-38-t0r" kind="presentation" id="yCt-oy-jIR"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9F2-fO-aCF">
