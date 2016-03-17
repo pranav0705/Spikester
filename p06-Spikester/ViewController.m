@@ -36,7 +36,7 @@ CAShapeLayer *circleLayer1;
     //creating circle
     circleLayer1 = [CAShapeLayer layer];
     circleLayer1.lineWidth = 3.0f;
-    [circleLayer1 setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 100, screenHeight/2 - 100, 200, 200)] CGPath]];
+    [circleLayer1 setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 100, screenHeight/2 - 115, 200, 200)] CGPath]];
     [circleLayer1 setStrokeColor:[[UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1] CGColor]];
     [circleLayer1 setFillColor:[[UIColor whiteColor] CGColor]];
     [[self.view layer] addSublayer:circleLayer1];
