@@ -67,25 +67,19 @@
                                 <rect key="frame" x="0.0" y="189" width="600" height="221"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D0y-s5-uMR">
-                                        <rect key="frame" x="167" y="8" width="251" height="79"/>
+                                        <rect key="frame" x="167" y="8" width="251" height="87"/>
                                         <color key="backgroundColor" red="0.26274509800000001" green="0.41176470590000003" blue="0.12941176469999999" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="79" id="YZy-Ok-uZF"/>
+                                            <constraint firstAttribute="height" constant="87" id="YZy-Ok-uZF"/>
                                             <constraint firstAttribute="width" constant="251" id="cKH-Ze-17f"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="36"/>
-                                        <size key="titleShadowOffset" width="2.2250738585072014e-308" height="0.0"/>
+                                        <fontDescription key="fontDescription" name="AcademyEngravedLetPlain" family="Academy Engraved LET" pointSize="42"/>
+                                        <size key="titleShadowOffset" width="2" height="0.0"/>
                                         <state key="normal" title="REPLAY">
-                                            <attributedString key="attributedTitle">
-                                                <fragment content="REPLAY">
-                                                    <attributes>
-                                                        <color key="NSColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                        <font key="NSFont" size="36" name="AcademyEngravedLetPlain"/>
-                                                        <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                                    </attributes>
-                                                </fragment>
-                                            </attributedString>
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <state key="selected">
+                                            <color key="titleShadowColor" red="0.066666666669999999" green="0.08235294118" blue="0.074509803920000006" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="GameOver:" destination="GEF-1K-xUE" eventType="touchUpInside" id="nsd-wj-x7g"/>
@@ -154,7 +148,7 @@
                                     <constraint firstAttribute="trailing" secondItem="gbT-Hh-GVx" secondAttribute="trailing" constant="177" id="gY4-Ur-1xF"/>
                                     <constraint firstAttribute="bottom" secondItem="gbT-Hh-GVx" secondAttribute="bottom" constant="15" id="hO2-uJ-Pat"/>
                                     <constraint firstItem="gbT-Hh-GVx" firstAttribute="leading" secondItem="Nc1-Im-9D3" secondAttribute="leading" constant="5" id="tKU-qP-0Sy"/>
-                                    <constraint firstItem="Nc1-Im-9D3" firstAttribute="top" secondItem="D0y-s5-uMR" secondAttribute="bottom" constant="20" id="vUa-Rx-aXq"/>
+                                    <constraint firstItem="Nc1-Im-9D3" firstAttribute="top" secondItem="D0y-s5-uMR" secondAttribute="bottom" constant="12" id="vUa-Rx-aXq"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -179,7 +173,7 @@
     </scenes>
     <resources>
         <image name="PlayButton.png" width="220" height="96"/>
-        <image name="trophy.png" width="720" height="720"/>
         <image name="title.png" width="554" height="54"/>
+        <image name="trophy.png" width="720" height="720"/>
     </resources>
 </document>
