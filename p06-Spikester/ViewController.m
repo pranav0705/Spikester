@@ -15,13 +15,14 @@
 
 @implementation ViewController
 @synthesize bear;
-bool muteOn;
+CAShapeLayer *circleLayer1;
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     //Adding background image to the main screen
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"background.jpg"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"background2.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
@@ -32,11 +33,21 @@ bool muteOn;
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
+    //creating circle
+    circleLayer1 = [CAShapeLayer layer];
+    circleLayer1.lineWidth = 3.0f;
+    [circleLayer1 setPath:[[UIBezierPath bezierPathWithOvalInRect:CGRectMake(screenWidth/2 - 100, screenHeight/2 - 100, 200, 200)] CGPath]];
+    [circleLayer1 setStrokeColor:[[UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1] CGColor]];
+    [circleLayer1 setFillColor:[[UIColor whiteColor] CGColor]];
+    [[self.view layer] addSublayer:circleLayer1];
+    
     //adding bearcat image to the center of the main screen
-    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2-25, screenHeight/2-25, 100, 100)];
+    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2-50, screenHeight/2-50, 100, 100)];
     bear.image=[UIImage imageNamed:@"bearcatfront.png"];
     [self.view addSubview: bear];
     [self bearcatAnimation];
+    
+   
     
 }
 
