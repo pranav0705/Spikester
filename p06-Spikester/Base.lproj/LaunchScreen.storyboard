@@ -17,27 +17,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="89R-zr-3kr">
-                                <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="g02-iz-UEu">
-                                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="400" id="6rM-fC-2lu"/>
-                                            <constraint firstAttribute="width" constant="400" id="UgP-ql-8MD"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="g02-iz-UEu" firstAttribute="centerX" secondItem="89R-zr-3kr" secondAttribute="centerX" id="830-Sv-YZd"/>
-                                    <constraint firstItem="g02-iz-UEu" firstAttribute="centerY" secondItem="89R-zr-3kr" secondAttribute="centerY" id="8vG-d5-YS6"/>
-                                </constraints>
-                            </stackView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="0J4-hP-Lvl">
+                                <rect key="frame" x="144" y="196" width="312" height="207"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.066666666666666666" green="0.082352941176470587" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="89R-zr-3kr" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="kTt-7g-f2H"/>
-                            <constraint firstItem="89R-zr-3kr" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="w2D-ym-YFz"/>
+                            <constraint firstItem="0J4-hP-Lvl" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="SL2-e2-rq5"/>
+                            <constraint firstItem="0J4-hP-Lvl" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="cQ6-Hl-bJN"/>
                         </constraints>
                     </view>
                 </viewController>
@@ -47,6 +34,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="launch.png" width="400" height="400"/>
+        <image name="launch.png" width="316" height="240"/>
     </resources>
 </document>
