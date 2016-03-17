@@ -59,11 +59,11 @@ int p;
     self.view.backgroundColor = [UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1];
     
 	//GAME SOUND
-    NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jump" ofType:@"wav"]];
+    NSURL *jumpUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"jumpSound" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)jumpUrl,&jumpSound);
-    NSURL *touchUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"touch" ofType:@"wav"]];
+    NSURL *touchUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"touchSound" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)touchUrl,&walltouchSound);
-    NSURL *gameOverUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gameover" ofType:@"wav"]];
+    NSURL *gameOverUrl = [NSURL fileURLWithPath:[[NSBundle mainBundle] pathForResource:@"gameoverSound" ofType:@"wav"]];
     AudioServicesCreateSystemSoundID((__bridge CFURLRef)gameOverUrl,&gameoverSound);
     
     //ARRAY INITIALIZATION
