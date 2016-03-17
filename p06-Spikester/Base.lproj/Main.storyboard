@@ -178,7 +178,8 @@
         </scene>
     </scenes>
     <resources>
-        <image name="PlayButton.png" width="224" height="100"/>
+        <image name="PlayButton.png" width="220" height="96"/>
         <image name="trophy.png" width="720" height="720"/>
+        <image name="title.png" width="554" height="54"/>
     </resources>
 </document>
