@@ -564,6 +564,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     [bear.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
+    [UIView animateWithDuration:5.0f animations:^{
+        //Move the image view to 100, 100 over 10 seconds.
+        bear.frame = CGRectMake(bear.center.x, screenHeight, bear.frame.size.width, bear.frame.size.height);
+    }];
+    
     [self gameOverSoundPlay];
 
 }
