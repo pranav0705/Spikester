@@ -120,6 +120,7 @@
 			children = (
 				18601FAB1C993B910046F7AE /* bearcat1.gif */,
 				18601FA91C9928C20046F7AE /* bearcat.gif */,
+				18601FA21C9918B10046F7AE /* launch.png */,
 			);
 			name = Images;
 			sourceTree = "<group>";
@@ -154,6 +155,8 @@
 				188E48F91C9A31A600C477FB /* background.jpg */,
 				188E48F51C9A2A6C00C477FB /* title.png */,
 				188E48F11C9A22FA00C477FB /* bearcatfront.png */,
+                810113181C9A27C000F1DB3A /* paws1.gif */,
+                810113161C9A255400F1DB3A /* paws.gif */,
 				DC43429C1C99514B00EE08B7 /* trophy.png */,
 				DC4342961C9926CA00EE08B7 /* gameover.wav */,
 				DC4342971C9926CA00EE08B7 /* touch.wav */,
@@ -315,6 +318,7 @@
 				18601FAA1C9928C20046F7AE /* bearcat.gif in Resources */,
 				188E48FA1C9A31A600C477FB /* background.jpg in Resources */,
 				188E48FC1C9A32E100C477FB /* launch.png in Resources */,
+                810113191C9A27C000F1DB3A /* paws1.gif in Resources */,
 				DC43428D1C97D51E00EE08B7 /* spike.png in Resources */,
 				18601FAC1C993B910046F7AE /* bearcat1.gif in Resources */,
 				18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */,
