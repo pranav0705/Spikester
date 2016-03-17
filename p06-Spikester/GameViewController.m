@@ -7,7 +7,6 @@
 //
 
 #import "GameViewController.h"
-#import "Spikes.h"
 
 @interface GameViewController ()
 
@@ -26,7 +25,7 @@ int backgroundColorCount = 1;
 int BearFlight;
 
 int touchCount =0;
-
+int trophyCount=0;
 CAShapeLayer *circleLayer;
 int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
@@ -35,7 +34,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 @synthesize bear,score,trophy;
 @synthesize upspikes, downspikes, leftspikes, rightspikes;
 @synthesize timer;
-
+@synthesize FinalScore,trofyCount,trophyImageView,trophyImageView1;
 
 - (void) jumpSoundPlay
 {
@@ -54,6 +53,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    trophyCount=0;
     // Do any additional setup after loading the view, typically from a nib.
     //BACKGROUND COLOR
     self.view.backgroundColor = [UIColor colorWithRed:(210/255.0) green:(210/255.0) blue:(210/255.0) alpha:1];
@@ -114,7 +114,16 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
+-(void)GameOverView{
+    _gameOver.hidden=NO;
+    trophy.hidden=YES;
+    circleLayer.hidden=YES;
+    scoreLable.hidden=YES;
+    [self.view bringSubviewToFront:_gameOver];
+    trophyImageView1.image=[UIImage imageNamed:@"trophy.png"];
+    trofyCount.text=[NSString stringWithFormat:@"%d",trophyCount];
+    FinalScore.text=[NSString stringWithFormat:@"%d",scr_counter];
+}
 -(void)spikesCollision{
 	
     //code for intersection
@@ -129,10 +138,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             [bearcatMovement invalidate];
             [spikesCollison invalidate];
             [self rotateImage];
-            _goHome.hidden=NO;
-           
-            [self.view bringSubviewToFront:_goHome];
-            
+            [self GameOverView];
         }
     }
     
@@ -148,6 +154,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
             [bearcatMovement invalidate];
             [spikesCollison invalidate];
             [self rotateImage];
+            [self GameOverView];
         }
     }
     
@@ -167,6 +174,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                 [bearcatMovement invalidate];
                 [spikesCollison invalidate];
                 [self rotateImage];
+                [self GameOverView];
             }
         }
     }
@@ -187,6 +195,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                 [bearcatMovement invalidate];
                 [spikesCollison invalidate];
                 [self rotateImage];
+                [self GameOverView];
             }
         }
     }
@@ -198,6 +207,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     if (CGRectIntersectsRect(bear.frame, trophy.frame))
     {
         trophy.hidden=true;
+        trophyCount+=1;
         [self addTrophy];
     }
 }
@@ -601,6 +611,9 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [spikesCollison invalidate];
     [trophyCollison invalidate];
     touchCount = 0;
+    scr_counter=0;
+    trophyCount=0;
+
 }
 
 - (void)colorBackgroundChange{
