@@ -11,8 +11,6 @@
 
 @end
 
-
-
 @implementation ViewController
 @synthesize bear;
 CAShapeLayer *circleLayer1;
