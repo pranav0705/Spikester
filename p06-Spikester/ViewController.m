@@ -11,36 +11,48 @@
 
 @end
 
+
+
 @implementation ViewController
-@synthesize  sound,credit,shop;
+@synthesize bear;
+bool muteOn;
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    //Adding background image to the main screen
     UIGraphicsBeginImageContext(self.view.frame.size);
-    [[UIImage imageNamed:@"2.jpg"] drawInRect:self.view.bounds];
+    [[UIImage imageNamed:@"background.jpg"] drawInRect:self.view.bounds];
     UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     self.view.backgroundColor = [UIColor colorWithPatternImage:image];
     
-    
+    //Fetching the size(Height, Width) of the Screen
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     CGFloat screenWidth = screenSize.width;
     CGFloat screenHeight = screenSize.height;
     
-    int startX=screenWidth/6;
+    //adding bearcat image to the center of the main screen
+    bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2-25, screenHeight/2-25, 100, 100)];
+    bear.image=[UIImage imageNamed:@"bearcatfront.png"];
+    [self.view addSubview: bear];
+    [self bearcatAnimation];
     
-    sound = [[UIView alloc] initWithFrame:CGRectMake((startX/2)+1, screenHeight-110, 70, 70)];
-    [self.view addSubview:sound];
-    [sound setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"abc.png"]]];
-
-    shop = [[UIView alloc] initWithFrame:CGRectMake((startX*3)+1-(startX/2), screenHeight-110, 70, 70)];
-    [self.view addSubview:shop];
-    [shop setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"abc.png"]]];
-    
-    credit = [[UIView alloc] initWithFrame:CGRectMake((startX*5)+1-(startX/2), screenHeight-110, 70, 70)];
-    [self.view addSubview:credit];
-    [credit setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"abc.png"]]];
 }
+
+- (void)bearcatAnimation {
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"position"];
+    animation.duration = 0.4;
+    animation.repeatCount = 1000;
+    animation.fromValue = [NSValue valueWithCGPoint:bear.center];
+    animation.toValue = [NSValue valueWithCGPoint:CGPointMake(bear.center.x, bear.center.y-30)];
+    animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseOut];
+    animation.autoreverses = YES;
+    animation.removedOnCompletion = NO;
+    [bear.layer addAnimation:animation forKey:@"position"];
+}
+
+
 -(BOOL)prefersStatusBarHidden
 {
     return YES;
