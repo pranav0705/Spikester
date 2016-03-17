@@ -17,8 +17,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="0J4-hP-Lvl">
-                                <rect key="frame" x="144" y="196" width="312" height="207"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launch.png" translatesAutoresizingMaskIntoConstraints="NO" id="0J4-hP-Lvl">
+                                <rect key="frame" x="142" y="179.5" width="316" height="240"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" red="0.066666666666666666" green="0.082352941176470587" blue="0.074509803921568626" alpha="1" colorSpace="calibratedRGB"/>
