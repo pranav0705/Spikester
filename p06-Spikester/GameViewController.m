@@ -707,7 +707,6 @@ int p;
     scr_counter=0;
     trophyCount=0;
     [self dismissViewControllerAnimated:YES completion:nil];
-
 }
 
 - (void)colorBackgroundChange{
