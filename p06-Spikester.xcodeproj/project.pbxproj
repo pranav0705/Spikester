@@ -24,7 +24,6 @@
 		18A1BB701C9691CC0001AFD5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18A1BB6E1C9691CC0001AFD5 /* LaunchScreen.storyboard */; };
 		18A1BB7B1C9691CC0001AFD5 /* p06_SpikesterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB7A1C9691CC0001AFD5 /* p06_SpikesterTests.m */; };
 		18A1BB861C9691CC0001AFD5 /* p06_SpikesterUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */; };
-		810113151C9A22D900F1DB3A /* paws.png in Resources */ = {isa = PBXBuildFile; fileRef = 810113141C9A22D900F1DB3A /* paws.png */; };
 		810113171C9A255400F1DB3A /* paws.gif in Resources */ = {isa = PBXBuildFile; fileRef = 810113161C9A255400F1DB3A /* paws.gif */; };
 		810113191C9A27C000F1DB3A /* paws1.gif in Resources */ = {isa = PBXBuildFile; fileRef = 810113181C9A27C000F1DB3A /* paws1.gif */; };
 		81FB6FB41C97E4CA00212C2E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81FB6FB21C97E4CA00212C2E /* Main.storyboard */; };
@@ -79,7 +78,6 @@
 		18A1BB811C9691CC0001AFD5 /* p06-SpikesterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "p06-SpikesterUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		18A1BB851C9691CC0001AFD5 /* p06_SpikesterUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = p06_SpikesterUITests.m; sourceTree = "<group>"; };
 		18A1BB871C9691CC0001AFD5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		810113141C9A22D900F1DB3A /* paws.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = paws.png; path = ../paws.png; sourceTree = "<group>"; };
 		810113161C9A255400F1DB3A /* paws.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paws.gif; sourceTree = SOURCE_ROOT; };
 		810113181C9A27C000F1DB3A /* paws1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = paws1.gif; sourceTree = SOURCE_ROOT; };
 		81FB6FB31C97E4CA00212C2E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "p06-Spikester/Base.lproj/Main.storyboard"; sourceTree = "<group>"; };
@@ -122,7 +120,6 @@
 			children = (
 				18601FAB1C993B910046F7AE /* bearcat1.gif */,
 				18601FA91C9928C20046F7AE /* bearcat.gif */,
-				810113141C9A22D900F1DB3A /* paws.png */,
 				18601FA21C9918B10046F7AE /* launch.png */,
 			);
 			name = Images;
@@ -320,7 +317,6 @@
 				18601FAA1C9928C20046F7AE /* bearcat.gif in Resources */,
 				810113191C9A27C000F1DB3A /* paws1.gif in Resources */,
 				18601F961C98124C0046F7AE /* 2.jpg in Resources */,
-				810113151C9A22D900F1DB3A /* paws.png in Resources */,
 				DC43428D1C97D51E00EE08B7 /* spike.png in Resources */,
 				18601FAC1C993B910046F7AE /* bearcat1.gif in Resources */,
 				18601F921C980D610046F7AE /* abc.png in Resources */,
