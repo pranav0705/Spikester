@@ -46,9 +46,6 @@ CAShapeLayer *circleLayer1;
     bear.image=[UIImage imageNamed:@"bearcatfront.png"];
     [self.view addSubview: bear];
     [self bearcatAnimation];
-    
-   
-    
 }
 
 - (void)bearcatAnimation {
