@@ -21,9 +21,9 @@ CGRect screenRect;
 CGFloat screenWidth;
 UILabel *scoreLable;
 CGFloat screenHeight;
-int flg = 0,scr_counter = 0;
+int flg = 0,scr_counter = 0, p =0;
 int BearFlight;
-
+UIImageView *paw,*paw2,*paw3;
 int touchCount =0;
 
 CAShapeLayer *circleLayer;
@@ -79,6 +79,26 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     bear = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2, screenHeight/2, 50, 50)];
     bear.image=[UIImage imageNamed:@"bearcat.gif"];
     [self.view addSubview: bear];
+    
+    paw = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
+    paw2 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
+    paw3 = [[UIImageView alloc] initWithFrame:CGRectMake(screenWidth/2 - 55, screenHeight/2 - 55, 15, 15)];
+    
+    //setting bear image
+    // bear = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [paw setImage:[UIImage imageNamed:@"paws.gif"]];
+    [paw2 setImage:[UIImage imageNamed:@"paws.gif"]];
+    [paw3 setImage:[UIImage imageNamed:@"paws.gif"]];
+    
+    [self.view addSubview:paw];
+    [self.view addSubview:paw2];
+    [self.view addSubview:paw3];
+    
+    paw.hidden = YES;
+    paw2.hidden = YES;
+    paw3.hidden = YES;
+    
+    
 
     //score
     self.score = [[UIView alloc] initWithFrame:CGRectMake(10,20,100,100)];
@@ -249,7 +269,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         //This will fade:
         [scoreLable setText:[NSString stringWithFormat:@"%02d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat1.gif"]];
-        
+        p = 1;
         [self randomSpikes];
         [self wallTouchSoundPlay];
         
@@ -273,6 +293,7 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
         // This will fade:
         [scoreLable setText:[NSString stringWithFormat:@"%02d",scr_counter]];
         [bear setImage:[UIImage imageNamed:@"bearcat.gif"]];
+        p = 0;
         [self randomSpikes];
         //play touch wall sound
         [self wallTouchSoundPlay];
@@ -465,9 +486,6 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
                     UIImageView *x =[rightspikes objectAtIndex:k];
                     //x.hidden = NO;
                     [self showSpikesAnimate:x];
-                    
-                    
-                    
                 }
             }
         }
@@ -546,6 +564,11 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     
     [bear.layer addAnimation:rotationAnimation forKey:@"rotationAnimation"];
     
+    [UIView animateWithDuration:5.0f animations:^{
+        //Move the image view to 100, 100 over 10 seconds.
+        bear.frame = CGRectMake(bear.center.x, screenHeight, bear.frame.size.width, bear.frame.size.height);
+    }];
+    
     [self gameOverSoundPlay];
 
 }
@@ -569,6 +592,44 @@ int checkSide = 0; //RIGHT side is 0 and LEFT side is 1
     [self jumpSoundPlay];
     
     BearFlight = 20;
+    [self showPictures];
+}
+
+- (void)showPictures
+{
+    if(p == 1)
+    {
+        paw.hidden = NO;
+        [paw setImage:[UIImage imageNamed:@"paws.gif"]];
+        [paw setFrame:CGRectMake(bear.center.x - 35, bear.center.y - 25, 50, 50)];
+        [self.view bringSubviewToFront:paw];
+        // [self.view addSubview:paw];
+//        paw2.hidden = NO;
+//        [paw2 setFrame:CGRectMake(bear.center.x - 30, bear.center.y, 15, 15)];
+//        
+//        paw3.hidden = NO;
+//        [paw3 setFrame:CGRectMake(bear.center.x - 45, bear.center.y + 15, 15, 15)];
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(hidePictures) userInfo:nil repeats:NO];
+    }
+    else{
+        paw.hidden = NO;
+        [paw setImage:[UIImage imageNamed:@"paws1.gif"]];
+        [paw setFrame:CGRectMake(bear.center.x, bear.center.y + 15, 50, 50)];
+        [self.view bringSubviewToFront:paw];
+   //     paw2.hidden = NO;
+     //   [paw2 setFrame:CGRectMake(bear.center.x + 30, bear.center.y+30, 15, 15)];
+      //  paw3.hidden = NO;
+       // [paw3 setFrame:CGRectMake(bear.center.x + 45, bear.center.y + 45, 15, 15)];
+        [NSTimer scheduledTimerWithTimeInterval:2 target:self selector:@selector(hidePictures) userInfo:nil repeats:NO];
+    }
+}
+
+- (void)hidePictures
+{
+    paw.hidden = YES;
+    paw2.hidden = YES;
+    paw3.hidden = YES;
+    
 }
 
 
