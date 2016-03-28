@@ -1,7 +1,7 @@
 # README #
 
 Spikester: - It's a simple game in which you have to save the Bearcat(Baxter- University Mascot) from touching the spikes and collecting trophies as many as possible. 
-
+This game is Developed in purely Objective-C using Xcode for iOS.
 Team:
 Jigar Panchal,
 Pranav Bhandari,
